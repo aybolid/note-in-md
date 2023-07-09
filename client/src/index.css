@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* 
+  use @layer and [css-selector] { @apply tailwind classes...; } to create custom classes or apply styles
+  Example:
+  body {
+    @apply bg-white;
+  }
+  */
+}
+
+@layer components {
+}
