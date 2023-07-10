@@ -1,4 +1,4 @@
-import { RequestHandler, Router } from 'express'
+import { Router } from 'express'
 import authHandler from '../handlers/authHandler'
 import userHandler from '../handlers/userHandler'
 
