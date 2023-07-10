@@ -1,8 +1,15 @@
 import mongoose from 'mongoose'
 import validator from 'validator'
-// import bcrypt from 'bcryptjs'
 
-const userSchema = new mongoose.Schema(
+export interface User extends mongoose.Document {
+  name: string
+  email: string
+  password: string
+  createdAt: Date
+  role: string
+}
+
+const userSchema = new mongoose.Schema<User>(
   {
     name: {
       type: String,
@@ -11,22 +18,26 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: [true, 'Please provide an email'],
-      unique: [true, 'Email already exists'],
+      unique: true,
       validate: [validator.isEmail, 'Provide a valid email'],
     },
     password: {
       type: String,
       required: [true, 'Please provide a password'],
       select: false,
-      minLength: [8, 'Password must be at least 8 characters'],
     },
     createdAt: {
       type: Date,
       default: Date.now,
       immutable: true,
     },
+    role: {
+      type: String,
+      enum: ['admin', 'user'],
+      default: 'user',
+    },
   },
-  { versionKey: false }
+  { versionKey: false, collection: 'users' }
 )
 
-export default mongoose.model('User', userSchema)
+export default mongoose.model('User', userSchema, 'users')

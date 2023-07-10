@@ -2,7 +2,14 @@ import 'dotenv/config'
 import mongoose from 'mongoose'
 import app from './app'
 
-const DB = process.env.MONGODB_URL!.replace('<password>', process.env.MONGODB_PASSWORD!)
+const dbUrl = process.env.MONGODB_URL
+const password = process.env.MONGODB_PASSWORD
+
+if (!dbUrl || !password) {
+  throw new Error('Missing MONGODB_URL or MONGODB_PASSWORD in .env')
+}
+
+const DB = dbUrl.replace('<password>', password)
 mongoose
   .connect(DB)
   .then(() => console.log('Connected to DB'))
