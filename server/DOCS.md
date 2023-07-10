@@ -6,10 +6,10 @@
 Request body example:
 ```json
 {
-	name: "John",
-	email: "email@email.com",
-	password: "secret",
-	passwordConfirm: "secret"
+	"name": "John",
+	"email": "email@email.com",
+	"password": "secret",
+	"passwordConfirm": "secret"
 }
 ```
 
@@ -19,8 +19,8 @@ Request body example:
 Request body example:
 ```json
 {
-	email: "email@email.com",
-	password: "secret"
+	"email": "email@email.com",
+	"password": "secret"
 }
 ```
 
