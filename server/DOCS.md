@@ -2,7 +2,7 @@
 
 ### Signup user
 
-`http://localhost:8080/api/auth/signup`
+`http://localhost:8080/api/users/signup`
 Request body example:
 
 ```json
@@ -16,7 +16,7 @@ Request body example:
 
 ## Login user
 
-`http://localhost:8080/api/auth/login`
+`http://localhost:8080/api/users/login`
 Request body example:
 
 ```json
