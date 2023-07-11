@@ -42,6 +42,12 @@ Validation:
 2. User with this email does not exist
 3. Wrong password
 
+### Login user with token (JWT)
+
+`/api/users/login/token` - `GET`
+
+Requires Authorization Bearer with JWT token inside
+
 ---
 
 ## Users Features

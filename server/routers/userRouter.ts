@@ -6,6 +6,7 @@ const r = Router()
 
 r.post('/signup', authHandler.signup)
 r.post('/login', authHandler.login)
+r.get('/login/token', authHandler.loginWithToken)
 
 r.use(authHandler.protect)
 

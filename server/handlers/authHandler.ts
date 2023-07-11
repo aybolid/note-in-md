@@ -68,9 +68,31 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
     }
 
     const token = createToken(user._id.toString())
-    const { password: _, ...userWithoutPassword } = user.toObject()
+    const { password: _, ...safeUser } = user.toObject()
 
-    return res.status(200).json({ message: 'User logged in', token, user: userWithoutPassword })
+    return res.status(200).json({ message: 'User logged in', token, user: safeUser })
+  } catch (err) {
+    console.log(err)
+    return next(err)
+  }
+}
+
+const loginWithToken = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    let token = ''
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+      token = req.headers.authorization.split(' ')[1]
+    }
+    if (!token) return
+
+    const decoded = (await decodeToken(token)) as { id: string }
+
+    const user = await User.findOne({ _id: decoded.id })
+    if (!user) {
+      return next(new AppError('User with this ID does not exist', 400, 'Bad Request'))
+    }
+
+    return res.status(200).json({ message: 'User logged in', user })
   } catch (err) {
     console.log(err)
     return next(err)
@@ -116,6 +138,6 @@ const restrictTo = (...roles: roles[]) => {
   }
 }
 
-const authHandler = { signup, login, protect, restrictTo }
+const authHandler = { signup, login, loginWithToken, protect, restrictTo }
 
 export default authHandler
