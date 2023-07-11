@@ -36,6 +36,23 @@ const loginUser = async (userCredentials: UserLoginCredentials) => {
   }
 }
 
-const auth = { signupUser, loginUser }
+const loginUserWithToken = async (token: string) => {
+  try {
+    const response: AxiosResponse<Omit<LoginResponse, 'token'> | ApiError> = await axios.get('/api/users/login/token', {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    return response.data
+  } catch (err) {
+    const data: ApiError = {
+      error: { message: 'Unexpected error has occurred', status: 'Internal Server Error', statusCode: 500 },
+    }
+    if (axios.isAxiosError(err)) {
+      return (err.response?.data as ApiError) || data
+    }
+    return data
+  }
+}
+
+const auth = { signupUser, loginUser, loginUserWithToken }
 
 export default auth
