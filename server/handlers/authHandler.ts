@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import bcryptjs from 'bcryptjs'
+import validator from 'validator'
 import User, { User as TUser } from '../models/User'
 import AppError from '../utils/AppError'
 import { createToken, decodeToken } from '../utils/jwt'
@@ -9,16 +10,17 @@ interface SignupBody {
   email: string
   password: string
   passwordConfirm: string
-  role?: 'admin' | 'user' | (string & {}) // <- keeps autocomplete
+  role?: 'admin' | 'user' | (string & {})
 }
 
 const signup = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { name, email, password, passwordConfirm, role } = req.body as SignupBody
     if (!name || !email || !password || !passwordConfirm) {
-      return next(
-        new AppError('Provide all required fields (name, email, password, passwordConfirm)', 400, 'Bad Request')
-      )
+      return next(new AppError('Provide all required fields', 400, 'Bad Request'))
+    }
+    if (!validator.isEmail(email)) {
+      return next(new AppError('Provide a valid email', 400, 'Bad Request'))
     }
     if (password.length < 6) {
       return next(new AppError('Password must be at least 6 characters long', 400, 'Bad Request'))
@@ -52,7 +54,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { email, password } = req.body as LoginBody
     if (!email || !password) {
-      return next(new AppError('Provide all required fields (email, password)', 400, 'Bad Request'))
+      return next(new AppError('Provide all required fields', 400, 'Bad Request'))
     }
 
     const user = await User.findOne({ email }).select('+password')
@@ -104,7 +106,7 @@ const protect = async (req: Request, _res: Response, next: NextFunction) => {
   }
 }
 
-type roles = 'admin' | 'user' | (string & {}) // <- keeps autocomplete
+type roles = 'admin' | 'user' | (string & {})
 const restrictTo = (...roles: roles[]) => {
   return (req: Request, _res: Response, next: NextFunction) => {
     if (!roles.includes((req as ProtectedRequest).user.role)) {
