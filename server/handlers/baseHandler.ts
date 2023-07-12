@@ -9,7 +9,7 @@ type Models = User
 
 const getAll = (Model: Model<Models>) => async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const features = new APIFeatures(Model.find(), req.query).sort().paginate()
+    const features = new APIFeatures(Model.find(), req.query).sort().paginate().limitFields()
     const docs = await features.query
 
     res.status(200).json({

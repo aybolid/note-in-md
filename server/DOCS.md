@@ -71,10 +71,10 @@ _todo_
 
 ---
 
-## Sort, Pagination + Limit, ~~Limit Fields~~
+## Sort, Pagination + Limit, Limit Fields
 
 Some API routes let you use queries. For example - `/api/users`:
 
 - sort -> `/api/users?sort=name,email` => users sorted A-Z
 - pagination + limit -> `/api/users?page=2&limit=10` => 2 page with 10 users or less
-- ~~limit fields -> `/api/users?fields=name,email` => users docs but only with name and email field inside~~
+- limit fields -> `/api/users?fields=name,email` => users docs but only with name and email field inside
