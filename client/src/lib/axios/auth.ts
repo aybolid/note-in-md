@@ -3,54 +3,63 @@ import type { LoginResponse, SignupResponse, UserLoginCredentials, UserSignupCre
 import type { ApiError } from '../../types/api'
 
 const signupUser = async (userCredentials: UserSignupCredentials) => {
+  let data: SignupResponse | undefined, error
   try {
     const response: AxiosResponse<SignupResponse> = await axios.post('/api/users/signup', userCredentials, {
       headers: { 'Content-Type': 'application/json' },
     })
-    return response.data
+    data = response.data
   } catch (err) {
-    const data: ApiError = {
-      error: { message: 'Unexpected error has occurred', status: 'Internal Server Error', statusCode: 500 },
+    error = {
+      message: 'Unexpected error has occurred',
+      statusCode: 500,
+      status: 'Internal Server Error',
     }
     if (axios.isAxiosError(err)) {
-      return (err.response?.data as ApiError) || data
+      error = (err.response?.data as ApiError).error
     }
-    return data
   }
+  return { error, data }
 }
 
 const loginUser = async (userCredentials: UserLoginCredentials) => {
+  let data: LoginResponse | undefined, error
   try {
-    const response: AxiosResponse<LoginResponse | ApiError> = await axios.post('/api/users/login', userCredentials, {
+    const response: AxiosResponse<LoginResponse> = await axios.post('/api/users/login', userCredentials, {
       headers: { 'Content-Type': 'application/json' },
     })
-    return response.data
+    data = response.data
   } catch (err) {
-    const data: ApiError = {
-      error: { message: 'Unexpected error has occurred', status: 'Internal Server Error', statusCode: 500 },
+    error = {
+      message: 'Unexpected error has occurred',
+      statusCode: 500,
+      status: 'Internal Server Error',
     }
     if (axios.isAxiosError(err)) {
-      return (err.response?.data as ApiError) || data
+      error = (err.response?.data as ApiError).error
     }
-    return data
   }
+  return { error, data }
 }
 
 const loginUserWithToken = async (token: string) => {
+  let data: Omit<LoginResponse, 'token'> | undefined, error
   try {
-    const response: AxiosResponse<Omit<LoginResponse, 'token'> | ApiError> = await axios.get('/api/users/login/token', {
+    const response: AxiosResponse<Omit<LoginResponse, 'token'>> = await axios.get('/api/users/login/token', {
       headers: { Authorization: `Bearer ${token}` },
     })
-    return response.data
+    data = response.data
   } catch (err) {
-    const data: ApiError = {
-      error: { message: 'Unexpected error has occurred', status: 'Internal Server Error', statusCode: 500 },
+    error = {
+      message: 'Unexpected error has occurred',
+      statusCode: 500,
+      status: 'Internal Server Error',
     }
     if (axios.isAxiosError(err)) {
-      return (err.response?.data as ApiError) || data
+      error = (err.response?.data as ApiError).error
     }
-    return data
   }
+  return { error, data }
 }
 
 const auth = { signupUser, loginUser, loginUserWithToken }

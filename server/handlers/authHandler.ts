@@ -45,14 +45,12 @@ const signup = async (req: Request, res: Response, next: NextFunction) => {
   }
 }
 
-interface LoginBody {
-  email: string
-  password: string
-}
-
 const login = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { email, password } = req.body as LoginBody
+    const { email, password } = req.body as {
+      email: string
+      password: string
+    }
     if (!email || !password) {
       return next(new AppError('Provide all required fields', 400, 'Bad Request'))
     }
@@ -85,7 +83,7 @@ const loginWithToken = async (req: Request, res: Response, next: NextFunction) =
     }
     if (!token) return
 
-    const decoded = (await decodeToken(token)) as { id: string }
+    const decoded = decodeToken<{ id: string }>(token)
 
     const user = await User.findOne({ _id: decoded.id })
     if (!user) {
@@ -113,7 +111,7 @@ const protect = async (req: Request, _res: Response, next: NextFunction) => {
       return next(new AppError('You are not logged in', 401, 'Unauthorized'))
     }
 
-    const decoded = (await decodeToken(token)) as { id: string }
+    const decoded = decodeToken<{ id: string }>(token)
 
     const user = await User.findById(decoded.id)
     if (!user) {

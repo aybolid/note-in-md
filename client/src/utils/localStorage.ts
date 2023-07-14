@@ -7,6 +7,10 @@ const get = <T>(key: string): T | null => {
   return value ? (JSON.parse(value) as T) : null
 }
 
-const local = { store, get }
+const remove = (key: string) => {
+  localStorage.removeItem(key)
+}
+
+const local = { store, get, remove }
 
 export default local

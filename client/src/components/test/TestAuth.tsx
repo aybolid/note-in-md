@@ -9,7 +9,7 @@ interface FormData {
 }
 
 export default function TestAuth() {
-  const { signup, login, authError, user } = useAuth()
+  const { signup, login, logout, authError, user, loading } = useAuth()
 
   const [formData, setFormData] = React.useState<FormData>({
     name: '',
@@ -73,7 +73,9 @@ export default function TestAuth() {
         <button>login</button>
       </form>
       {authError && <p>{authError}</p>}
+      {loading && <p>loading...</p>}
       <pre>{JSON.stringify(user, null, 2)}</pre>
+      <button onClick={logout}>logout</button>
     </>
   )
 }
