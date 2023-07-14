@@ -56,7 +56,7 @@ Requires Authorization Bearer with JWT token inside
 
 - Get all users -> `/api/users` - `GET` => all users _(sort, pagination + limit)_
 - Get user -> `/api/users/:id` - `GET` => user by provided ID
-- Delete user -> `/api/users/:id` - `DELETE` => null
+- Delete user -> `/api/users/:id` - `DELETE` => null _(deletes user related notes)_
 - Update user -> `/api/users/:id` - `PATCH` => updated user doc _(updating runs revalidation)_
 
 ### User role
