@@ -63,11 +63,35 @@ Requires Authorization Bearer with JWT token inside
 
 _todo_
 
+_User must be authorized for those actions (use BEARER with JWT)_
+
 ---
 
 ## Notes features
 
-_todo_
+- Create new note -> `/api/notes/create` - `POST`
+
+```json
+{
+  "title": "New Note",
+  "content": "## Content in MD"
+}
+```
+
+- Update my note -> `/api/notes/update-my` - `PATCH` => updated note
+
+```json
+{
+  "title": "Updated Title",
+  "content": "## New content in MD"
+}
+```
+
+- Get my **all** -> `/api/notes/get-my` - `GET` => all user notes
+- Get my **one** -> `/api/notes/get-my/:id` - `GET` => one user note
+- Delete my -> `/api/note/delete-my/:id` - `DELETE`
+
+_User must be authorized for those actions (use BEARER with JWT)_
 
 ---
 

@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import validator from 'validator'
 
 export interface User extends mongoose.Document {
   name: string

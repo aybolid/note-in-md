@@ -1,9 +1,9 @@
 import base from './baseHandler'
-import User from '../models/User'
+import User, { User as IUser } from '../models/User'
 
-const getAllUsers = base.getAll(User)
-const getUser = base.getOne(User)
-const deleteUser = base.deleteOne(User)
-const updateUser = base.updateOne(User)
+const getAllUsers = base.getAll<IUser>(User)
+const getUser = base.getOne<IUser>(User)
+const deleteUser = base.deleteOne<IUser>(User)
+const updateUser = base.updateOne<IUser>(User)
 
 export default { getAllUsers, getUser, deleteUser, updateUser }

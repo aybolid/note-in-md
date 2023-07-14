@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 
 import userRouter from './routers/userRouter'
+import noteRouter from './routers/noteRouter'
 import errorHandler from './handlers/errorHandler'
 import AppError from './utils/AppError'
 
@@ -12,6 +13,7 @@ app.use(express.json()) // Parse incoming requests with JSON payloads
 
 // Routers
 app.use('/api/users', userRouter)
+app.use('/api/notes', noteRouter)
 
 app.use('*', (_req, _res, next) => {
   const error = new AppError('Not Found', 404, 'Not Found')
