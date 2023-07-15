@@ -1,16 +1,18 @@
 import React, { ReactNode } from 'react'
+import { NavLink } from 'react-router-dom'
 
 type ButtonProps = (
-  | { as: 'a'; href: string }
+  | { as: 'link'; path: string }
   | {
       as: 'btn'
-      onClick: () => void
+      onClick: (params: never) => void
       type?: 'button' | 'submit' | 'reset'
     }
 ) & {
   children: ReactNode
   variant: 'primary' | 'secondary' | 'success' | 'danger'
   size: 'small' | 'medium' | 'large'
+  className?: string
 }
 
 const setVariantStyles = (variant: ButtonProps['variant']) => {
@@ -42,14 +44,14 @@ const setSizeStyles = (size: ButtonProps['size']) => {
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const btnClassName = `button ${setVariantStyles(props.variant)} ${setSizeStyles(props.size)}`
+  const btnClassName = `button ${setVariantStyles(props.variant)} ${setSizeStyles(props.size)} ${props.className} || ' '`
 
   switch (props.as) {
-    case 'a':
+    case 'link':
       return (
-        <a className={btnClassName} href={props.href}>
+        <NavLink className={btnClassName} to={props.path}>
           {props.children}
-        </a>
+        </NavLink>
       )
     case 'btn':
       return (

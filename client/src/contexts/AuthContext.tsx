@@ -27,12 +27,11 @@ export const useAuth = () => {
 const useProvideAuth = () => {
   const [user, setUser] = React.useState<User | null>(null)
   const [authError, setAuthError] = React.useState<string>('')
-  const [loading, setLoading] = React.useState<boolean>(false)
+  const [loading, setLoading] = React.useState<boolean>(true)
 
   React.useEffect(() => {
     const accessToken = local.get<string>('access-token')
-    if (!accessToken) return
-    setLoading(true)
+    if (!accessToken) return setLoading(false)
     auth
       .loginUserWithToken(accessToken)
       .then(({ data, error }) => {
