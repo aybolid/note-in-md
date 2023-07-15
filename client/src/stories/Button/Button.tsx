@@ -12,7 +12,7 @@ type ButtonProps = (
   children: ReactNode
   variant: 'primary' | 'secondary' | 'success' | 'danger'
   size: 'small' | 'medium' | 'large'
-  className: string
+  className?: string
 }
 
 const setVariantStyles = (variant: ButtonProps['variant']) => {
@@ -44,7 +44,7 @@ const setSizeStyles = (size: ButtonProps['size']) => {
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const btnClassName = `button ${props.className} ${setVariantStyles(props.variant)} ${setSizeStyles(props.size)}`
+  const btnClassName = `button ${setVariantStyles(props.variant)} ${setSizeStyles(props.size)} ${props.className} || ' '`
 
   switch (props.as) {
     case 'link':
