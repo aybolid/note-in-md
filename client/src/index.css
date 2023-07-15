@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  body {
+    @apply bg-white dark:bg-black;
+  }
   /* 
   use @layer and [css-selector] { @apply tailwind classes...; } to create custom classes or apply styles
   Example:
