@@ -9,7 +9,7 @@ const errorHandler: ErrorRequestHandler = (
   _next: NextFunction
 ) => {
   console.log(err)
-  res.status((err as AppError).statusCode || 500).json(err)
+  res.status((err as AppError).statusCode || 500).json({ error: err })
 }
 
 export default errorHandler

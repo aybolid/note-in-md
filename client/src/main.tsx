@@ -2,11 +2,17 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
+import { AuthProvider } from './contexts/AuthContext.tsx'
 
-// todo if providers needed create util component for them
+// eslint-disable-next-line react-refresh/only-export-components
+const Providers: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return <AuthProvider>{children}</AuthProvider>
+}
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLDivElement).render(
   <React.StrictMode>
-    <App />
+    <Providers>
+      <App />
+    </Providers>
   </React.StrictMode>
 )
