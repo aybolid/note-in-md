@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  body {
+    @apply text-orange-100 dark:text-stone-700 bg-stone-200 dark:bg-stone-900;
+  }
   /* 
   use @layer and [css-selector] { @apply tailwind classes...; } to create custom classes or apply styles
   Example:

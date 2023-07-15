@@ -20,6 +20,8 @@ const protect = (route: React.ReactNode) => {
   return <ProtectedRoute>{route}</ProtectedRoute>
 }
 
+import ThemeToggler from './components/ThemeToggler/ThemeToggler'
+
 export default function App() {
   return (
     <Router>
@@ -29,6 +31,7 @@ export default function App() {
             {label}
           </NavLink>
         ))}
+        <ThemeToggler />
       </div>
       <Routes>
         <Route path="/" element={<MainPage />} />
