@@ -1,5 +1,5 @@
 import base from './baseHandler'
-import User from '../models/User'
+import User, { User as IUser } from '../models/User'
 
 const getAllUsers = base.getAll(User)
 const getUser = base.getOne(User)

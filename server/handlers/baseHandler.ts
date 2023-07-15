@@ -3,11 +3,10 @@ import { Model } from 'mongoose'
 import AppError from '../utils/AppError'
 
 import { User } from '../models/User'
+import { Note } from '../models/Note'
 import APIFeatures from '../utils/APIFeatures'
 
-type Models = User
-
-const getAll = (Model: Model<Models>) => async (req: Request, res: Response, next: NextFunction) => {
+const getAll = (Model: Model<any>) => async (req: Request, res: Response, next: NextFunction) => {
   try {
     const features = new APIFeatures(Model.find(), req.query).sort().paginate().limitFields()
     const docs = await features.query
@@ -22,7 +21,7 @@ const getAll = (Model: Model<Models>) => async (req: Request, res: Response, nex
   }
 }
 
-const getOne = (Model: Model<Models>) => async (req: Request, res: Response, next: NextFunction) => {
+const getOne = (Model: Model<any>) => async (req: Request, res: Response, next: NextFunction) => {
   try {
     const doc = await Model.findById(req.params.id)
 
@@ -39,7 +38,7 @@ const getOne = (Model: Model<Models>) => async (req: Request, res: Response, nex
   }
 }
 
-const deleteOne = (Model: Model<Models>) => async (req: Request, res: Response, next: NextFunction) => {
+const deleteOne = (Model: Model<any>) => async (req: Request, res: Response, next: NextFunction) => {
   try {
     const doc = await Model.findByIdAndDelete(req.params.id)
     if (!doc) {
@@ -54,7 +53,7 @@ const deleteOne = (Model: Model<Models>) => async (req: Request, res: Response, 
   }
 }
 
-const updateOne = (Model: Model<Models>) => async (req: Request, res: Response, next: NextFunction) => {
+const updateOne = (Model: Model<any>) => async (req: Request, res: Response, next: NextFunction) => {
   try {
     const doc = await Model.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
 
@@ -71,7 +70,7 @@ const updateOne = (Model: Model<Models>) => async (req: Request, res: Response, 
   }
 }
 
-const createOne = (Model: Model<Models>) => async (req: Request, res: Response, next: NextFunction) => {
+const createOne = (Model: Model<any>) => async (req: Request, res: Response, next: NextFunction) => {
   try {
     const doc = await Model.create(req.body)
 

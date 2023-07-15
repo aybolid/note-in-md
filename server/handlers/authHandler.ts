@@ -4,6 +4,7 @@ import validator from 'validator'
 import User, { User as TUser } from '../models/User'
 import AppError from '../utils/AppError'
 import { createToken, decodeToken } from '../utils/jwt'
+import getTokenFromReq from '../utils/getTokenFromReq'
 
 interface SignupBody {
   name: string
@@ -77,10 +78,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
 
 const loginWithToken = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    let token = ''
-    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-      token = req.headers.authorization.split(' ')[1]
-    }
+    const token = getTokenFromReq(req)
     if (!token) return
 
     const decoded = decodeToken<{ id: string }>(token)
@@ -103,10 +101,7 @@ interface ProtectedRequest extends Request {
 
 const protect = async (req: Request, _res: Response, next: NextFunction) => {
   try {
-    let token = ''
-    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-      token = req.headers.authorization.split(' ')[1]
-    }
+    const token = getTokenFromReq(req)
     if (!token) {
       return next(new AppError('You are not logged in', 401, 'Unauthorized'))
     }

@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import authHandler from '../handlers/authHandler'
 import userHandler from '../handlers/userHandler'
+import noteMiddleware from '../middleware/noteMiddleware'
 
 const r = Router()
 
@@ -16,6 +17,9 @@ r.use(authHandler.restrictTo('admin'))
 
 r.get('/', userHandler.getAllUsers)
 
-r.route('/:id').get(userHandler.getUser).delete(userHandler.deleteUser).patch(userHandler.updateUser)
+r.route('/:id')
+  .get(userHandler.getUser)
+  .delete(noteMiddleware.deleteUserRelatedNotes, userHandler.deleteUser)
+  .patch(userHandler.updateUser)
 
 export default r
