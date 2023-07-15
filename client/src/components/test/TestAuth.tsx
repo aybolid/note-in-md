@@ -1,5 +1,6 @@
 import React from 'react'
 import { useAuth } from '../../contexts/AuthContext'
+import Button from '../../stories/Button/Button'
 
 interface FormData {
   name: string
@@ -54,7 +55,9 @@ export default function TestAuth() {
           value={formData.passwordConfirm}
           onChange={(e) => setFormData({ ...formData, passwordConfirm: e.target.value })}
         />
-        <button>signup</button>
+        <Button type="submit" as="btn" variant="success" size="small" onClick={handleSignup}>
+          signup
+        </Button>
       </form>
       <hr />
       <form onSubmit={handleLogin}>
@@ -70,12 +73,16 @@ export default function TestAuth() {
           value={formData.password}
           onChange={(e) => setFormData({ ...formData, password: e.target.value })}
         />
-        <button>login</button>
+         <Button type="submit" as="btn" variant="success" size="small" onClick={handleLogin}>
+          login
+        </Button>
       </form>
       {authError && <p>{authError}</p>}
       {loading && <p>loading...</p>}
       <pre>{JSON.stringify(user, null, 2)}</pre>
-      <button onClick={logout}>logout</button>
+      <Button as="btn" variant="danger" size="small" onClick={logout}>
+        logout
+      </Button>
     </>
   )
 }
