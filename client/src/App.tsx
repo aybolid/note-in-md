@@ -1,9 +1,11 @@
-import TestAuth from './components/test/TestAuth'
+// import Button from './stories/Button/Button'
 
 export default function App() {
   return (
     <>
-      <TestAuth />
+      {/* <Button size="small" variant="primary">
+        text
+      </Button> */}
     </>
   )
 }

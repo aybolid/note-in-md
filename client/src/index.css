@@ -13,4 +13,7 @@
 }
 
 @layer components {
+  .button {
+    @apply p-2  border border-transparent tracking-wide inline-flex  justify-center align-middle rounded-md duration-200 ease-in-out hover:scale-105;
+  }
 }
