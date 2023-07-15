@@ -4,7 +4,7 @@ type ButtonProps = (
   | { as: 'a'; href: string }
   | {
       as: 'btn'
-      onClick: () => void
+      onClick: (params: never) => void
       type?: 'button' | 'submit' | 'reset'
     }
 ) & {
