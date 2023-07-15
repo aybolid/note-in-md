@@ -16,7 +16,7 @@ const ThemeToggler = () => {
 
   return (
     <div className="m-2">
-      <Button as="btn"  type="button" variant="secondary" size="small" onClick={toggleTheme}>
+      <Button as="btn" type="button" variant="secondary" size="small" onClick={toggleTheme}>
         {theme === 'dark' ? <MdDarkMode size={'1.5rem'} /> : <MdOutlineDarkMode size={'1.5rem'} />}
       </Button>
     </div>
