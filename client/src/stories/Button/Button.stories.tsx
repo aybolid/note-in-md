@@ -7,6 +7,7 @@ const meta: Meta<typeof Button> = {
   args: {
     children: 'Btn Text',
     size: 'medium',
+    as: 'btn',
   },
 }
 
