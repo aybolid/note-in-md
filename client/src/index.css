@@ -4,18 +4,17 @@
 
 @layer base {
   body {
-    @apply text-orange-100 dark:text-stone-700 bg-stone-200 dark:bg-stone-900;
+    @apply dark:text-orange-100 text-stone-700 bg-[url('/bg-light.svg')] dark:bg-[url('/bg-dark.svg')] bg-no-repeat bg-cover overflow-x-hidden;
   }
-  /* 
-  use @layer and [css-selector] { @apply tailwind classes...; } to create custom classes or apply styles
-  Example:
-  body {
-    @apply bg-white;
+  #root {
+    @apply min-h-screen h-full w-full flex;
   }
-  */
 }
 
 @layer components {
+  .form-input {
+    @apply border border-purple-500 focus:border-red-800 focus:outline-none;
+  }
   .button {
     @apply p-2 border border-transparent tracking-wide inline-flex justify-center align-middle rounded-md duration-200 ease-in-out hover:scale-105;
   }

@@ -1,5 +1,5 @@
 import { useAuth } from '../contexts/AuthContext'
-import Button from '../stories/Button/Button'
+import Button from '../stories/components/Button'
 
 export default function UserProfilePage() {
   const { user, logout } = useAuth()

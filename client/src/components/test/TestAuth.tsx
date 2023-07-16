@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAuth } from '../../contexts/AuthContext'
-import Button from '../../stories/Button/Button'
+import Button from '../../stories/components/Button'
 
 interface FormData {
   name: string
@@ -73,7 +73,7 @@ export default function TestAuth() {
           value={formData.password}
           onChange={(e) => setFormData({ ...formData, password: e.target.value })}
         />
-         <Button type="submit" as="btn" variant="success" size="small" onClick={handleLogin}>
+        <Button type="submit" as="btn" variant="success" size="small" onClick={handleLogin}>
           login
         </Button>
       </form>
