@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import MainPage from './pages/MainPage'
 import AboutPage from './pages/AboutPage'
 import MarkdownTutorialPage from './pages/MarkdownTutorialPage'
@@ -6,39 +6,25 @@ import AuthPage from './pages/AuthPage'
 import ErrorPage from './pages/ErrorPage'
 import UserProfilePage from './pages/UserProfilePage'
 import ProtectedRoute from './components/utils/ProtectedRoute'
-
-const navLinks = {
-  Home: '/',
-  About: '/about',
-  'Markdown Tutorial': '/md-tutorial',
-  Auth: '/auth/signup',
-  Profile: '/profile',
-  Error: '/this-route-does-not-exist',
-}
+import RootLayout from './components/RootLayout'
 
 const protect = (route: React.ReactNode) => {
   return <ProtectedRoute>{route}</ProtectedRoute>
 }
 
-import ThemeToggler from './components/ThemeToggler/ThemeToggler'
+const layoutWrapper = (route: React.ReactNode) => {
+  return <RootLayout>{route}</RootLayout>
+}
 
 export default function App() {
   return (
     <Router>
-      <div>
-        {Object.entries(navLinks).map(([label, to]) => (
-          <NavLink key={to} className="mx-4" to={to}>
-            {label}
-          </NavLink>
-        ))}
-        <ThemeToggler />
-      </div>
       <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/md-tutorial" element={<MarkdownTutorialPage />} />
+        <Route path="/" element={layoutWrapper(<MainPage />)} />
+        <Route path="/about" element={layoutWrapper(<AboutPage />)} />
+        <Route path="/md-tutorial" element={layoutWrapper(<MarkdownTutorialPage />)} />
         <Route path="/auth/:action" element={<AuthPage />} />
-        <Route path="/profile" element={protect(<UserProfilePage />)} />
+        <Route path="/profile" element={protect(layoutWrapper(<UserProfilePage />))} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>
