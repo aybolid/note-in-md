@@ -7,15 +7,19 @@ import { ThemeProvider } from './contexts/ThemeContext.tsx'
 
 // eslint-disable-next-line react-refresh/only-export-components
 const Providers: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  return <AuthProvider>{children}</AuthProvider>
+  return (
+    <>
+      <AuthProvider>
+        <ThemeProvider>{children}</ThemeProvider>
+      </AuthProvider>
+    </>
+  )
 }
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLDivElement).render(
   <React.StrictMode>
     <Providers>
-      <ThemeProvider>
-        <App />
-      </ThemeProvider>
+      <App />
     </Providers>
   </React.StrictMode>
 )
