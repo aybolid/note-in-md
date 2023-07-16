@@ -1,5 +1,5 @@
 import { useTheme } from '../../contexts/ThemeContext'
-import Button from '../../stories/Button/Button'
+import Button from '../../stories/components/Button'
 import { MdDarkMode, MdOutlineDarkMode } from 'react-icons/md'
 
 const ThemeToggler = () => {

@@ -17,16 +17,16 @@ export const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
 const useProviderTheme = (): ThemeContextState => {
   const [theme, setTheme] = useState<'light' | 'dark'>(() => (local.get('theme') as 'light' | 'dark') ?? 'dark')
 
-  const HTNLRef = useRef(document.querySelector('html'))
+  const HTMLRef = useRef(document.querySelector('html'))
 
   useEffect(() => {
     local.store('theme', theme)
   }, [theme])
 
   if (theme === 'light') {
-    HTNLRef.current?.classList.remove('dark')
+    HTMLRef.current?.classList.remove('dark')
   } else {
-    HTNLRef.current?.classList.add('dark')
+    HTMLRef.current?.classList.add('dark')
   }
 
   return { theme, setTheme }

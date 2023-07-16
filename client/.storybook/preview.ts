@@ -6,6 +6,9 @@ const preview: Preview = {
     darkMode: {
       defaultValue: true,
     },
+    className: {
+      defaultValue: 'dark',
+    },
   },
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
