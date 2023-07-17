@@ -1,3 +1,3 @@
 export default function MarkdownTutorialPage() {
-  return <div>MarkdownTutorialPage</div>
+  return <div>MarkdownTutorialPage</div>;
 }

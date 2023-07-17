@@ -1,25 +1,25 @@
-import express from 'express'
-import cors from 'cors'
+import express from 'express';
+import cors from 'cors';
 
-import userRouter from './routers/userRouter'
-import noteRouter from './routers/noteRouter'
-import errorHandler from './handlers/errorHandler'
-import AppError from './utils/AppError'
+import userRouter from './routers/userRouter';
+import noteRouter from './routers/noteRouter';
+import errorHandler from './handlers/errorHandler';
+import AppError from './utils/AppError';
 
-const app = express()
+const app = express();
 
-app.use(cors()) // Allow Cross-Origin requests
-app.use(express.json()) // Parse incoming requests with JSON payloads
+app.use(cors()); // Allow Cross-Origin requests
+app.use(express.json()); // Parse incoming requests with JSON payloads
 
 // Routers
-app.use('/api/users', userRouter)
-app.use('/api/notes', noteRouter)
+app.use('/api/users', userRouter);
+app.use('/api/notes', noteRouter);
 
 app.use('*', (_req, _res, next) => {
-  const error = new AppError('Not Found', 404, 'Not Found')
-  next(error)
-})
+  const error = new AppError('Not Found', 404, 'Not Found');
+  next(error);
+});
 
-app.use(errorHandler)
+app.use(errorHandler);
 
-export default app
+export default app;

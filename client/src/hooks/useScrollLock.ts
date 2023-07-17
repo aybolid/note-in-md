@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 
 const useScrollLock = (lock: boolean) => {
   React.useEffect(() => {
     if (lock) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'auto'
+      document.body.style.overflow = 'auto';
     }
-  }, [lock])
-}
+  }, [lock]);
+};
 
-export default useScrollLock
+export default useScrollLock;

@@ -1,7 +1,11 @@
-import Aside from './Aside'
-import Header from './Header'
+import Aside from './Aside';
+import Header from './Header';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <>
       <Aside />
@@ -12,5 +16,5 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
       </div>
     </>
-  )
+  );
 }

@@ -1,12 +1,12 @@
-import mongoose, { mongo } from 'mongoose'
+import mongoose, { mongo } from 'mongoose';
 
 export interface Note extends mongoose.Document {
-  title: string
-  content: string | null
-  createdAt: Date
-  updatedAt: Date | null
-  tags: string[]
-  authorId: string
+  title: string;
+  content: string | null;
+  createdAt: Date;
+  updatedAt: Date | null;
+  tags: string[];
+  authorId: string;
 }
 
 const noteSchema = new mongoose.Schema<Note>(
@@ -43,6 +43,6 @@ const noteSchema = new mongoose.Schema<Note>(
     },
   },
   { versionKey: false, collection: 'notes' }
-)
+);
 
-export default mongoose.model<Note>('Note', noteSchema)
+export default mongoose.model<Note>('Note', noteSchema);

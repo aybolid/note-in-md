@@ -1,16 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import LabeledInputComponennt from '../LabeledInput/LabeledInput'
+import type { Meta, StoryObj } from '@storybook/react';
+import LabeledInputComponennt from '../LabeledInput/LabeledInput';
 
 const meta: Meta<typeof LabeledInputComponennt> = {
   component: LabeledInputComponennt,
 
   args: {},
-}
+};
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof LabeledInputComponennt>
+type Story = StoryObj<typeof LabeledInputComponennt>;
 
 export const LabeledInput: Story = {
   args: {},
-}
+};

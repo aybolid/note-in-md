@@ -6,4 +6,5 @@ export default {
     extend: {},
   },
   plugins: [require('@tailwindcss/forms')({ strategy: 'base' })],
-}
+  // mode: import.meta.env.PROD ? 'jit' : undefined,
+};

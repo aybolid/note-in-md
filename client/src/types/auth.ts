@@ -1,27 +1,27 @@
 export type User = {
-  _id: string
-  name: string
-  email: string
-  role: string
-  createdAt: string
-}
+  _id: string;
+  name: string;
+  email: string;
+  role: string;
+  createdAt: string;
+};
 
 export type UserSignupCredentials = {
-  name: string
-  email: string
-  password: string
-  passwordConfirm: string
-}
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+};
 export type SignupResponse = {
-  message: 'User created'
-}
+  message: 'User created';
+};
 
 export type UserLoginCredentials = {
-  email: string
-  password: string
-}
+  email: string;
+  password: string;
+};
 export type LoginResponse = {
-  message: 'User logged in'
-  token: string
-  user: User
-}
+  message: 'User logged in';
+  token: string;
+  user: User;
+};
