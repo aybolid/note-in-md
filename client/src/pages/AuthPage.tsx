@@ -1,10 +1,10 @@
-import TestAuth from '../components/test/TestAuth'
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { useAuth } from '../contexts/AuthContext'
-import { Navigate, useParams, NavLink } from 'react-router-dom'
+import { Navigate, NavLink } from 'react-router-dom'
+import AuthForm from '../components/AuthForm/AuthForm'
 
 export default function AuthPage() {
-  const { user } = useAuth()
-  const { action } = useParams()
+  const { user, authError } = useAuth()
 
   if (user) {
     return <Navigate to="/" />
@@ -12,14 +12,9 @@ export default function AuthPage() {
 
   return (
     <>
-      <div>AuthPage</div>
-      <p>Action: {action}</p>
-      <TestAuth />
-      <div>
-        <NavLink to={`/auth/${action === 'login' ? 'signup' : 'login'}`}>
-          {action === 'login' ? 'signup link' : 'login link'}
-        </NavLink>
-      </div>
+      <NavLink to={'/'}>Go Back</NavLink>
+      <AuthForm />
+      {authError && <p>{authError}</p>}
     </>
   )
 }
