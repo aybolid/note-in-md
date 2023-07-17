@@ -18,10 +18,10 @@ export const LabeledInput: FC<LabeledInputProps> = forwardRef(
     ref: Ref<HTMLInputElement>
   ) => {
     return (
-      <label>
+      <label className="w-full">
         {label}
         <input
-          className={`form-input ${className || ''}`}
+          className={`input ${className || ''}`}
           name={name}
           onChange={onChange}
           onBlur={onBlur}

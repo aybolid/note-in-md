@@ -12,8 +12,8 @@
 }
 
 @layer components {
-  .form-input {
-    @apply border border-purple-500 focus:border-red-800 focus:outline-none;
+  .input {
+    @apply block w-full rounded-md bg-transparent focus:border-2  border-purple-400 shadow-sm focus:border-purple-600 focus:ring focus:ring-0 focus:ring-opacity-50;
   }
   .button {
     @apply p-2 border border-transparent tracking-wide inline-flex justify-center align-middle rounded-md duration-200 ease-in-out hover:scale-105;
