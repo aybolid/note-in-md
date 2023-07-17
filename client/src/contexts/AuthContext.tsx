@@ -24,81 +24,101 @@ export const useAuth = () => {
   return React.useContext(AuthContext) as AuthContextState
 }
 
+enum ActionType {
+  SET_USER = 'SET_USER',
+  SET_AUTH_ERROR = 'SET_AUTH_ERROR',
+  SET_LOADING = 'SET_LOADING',
+}
+type Action =
+  | { type: ActionType.SET_USER; payload: User | null }
+  | { type: ActionType.SET_AUTH_ERROR; payload: string }
+  | { type: ActionType.SET_LOADING; payload: boolean }
+type State = {
+  user: User | null
+  authError: string
+  loading: boolean
+}
+
+const initialState: State = {
+  user: null,
+  authError: '',
+  loading: true,
+}
+
+const reducer = (state: State, action: Action): State => {
+  switch (action.type) {
+    case ActionType.SET_USER:
+      return { ...state, user: action.payload }
+    case ActionType.SET_AUTH_ERROR:
+      return { ...state, authError: action.payload }
+    case ActionType.SET_LOADING:
+      return { ...state, loading: action.payload }
+    default:
+      return state
+  }
+}
+
 const useProvideAuth = () => {
-  const [user, setUser] = React.useState<User | null>(null)
-  const [authError, setAuthError] = React.useState<string>('')
-  const [loading, setLoading] = React.useState<boolean>(true)
+  const [state, dispatch] = React.useReducer(reducer, initialState)
 
   React.useEffect(() => {
     const accessToken = local.get<string>('access-token')
-    if (!accessToken) return setLoading(false)
+    if (!accessToken) return dispatch({ type: ActionType.SET_LOADING, payload: false })
     auth
       .loginUserWithToken(accessToken)
       .then(({ data, error }) => {
         if (error) {
           local.remove('access-token')
-          setAuthError(error.message)
+          dispatch({ type: ActionType.SET_AUTH_ERROR, payload: error.message })
           return
         }
         const { user: fetchedUser } = data!
-        setAuthError('')
-        setUser(fetchedUser)
+        dispatch({ type: ActionType.SET_AUTH_ERROR, payload: '' })
+        dispatch({ type: ActionType.SET_USER, payload: fetchedUser })
       })
-      .catch((err) => {
+      .catch(() => {
         local.remove('access-token')
-        console.error('An error occurred during login with token:', err)
       })
-      .finally(() => setLoading(false))
+      .finally(() => dispatch({ type: ActionType.SET_LOADING, payload: false }))
   }, [])
 
   const signup = async (userCredentials: UserSignupCredentials) => {
-    setLoading(true)
-    try {
-      const { error } = await auth.signupUser(userCredentials)
-      if (error) {
-        setAuthError(error.message)
-        return
-      }
-      setAuthError('')
-      await login({ email: userCredentials.email, password: userCredentials.password })
-    } catch (err) {
-      setAuthError('Unexpected error occurred')
-      console.error('An error occurred during signup:', err)
-    } finally {
-      setLoading(false)
+    dispatch({ type: ActionType.SET_LOADING, payload: true })
+    const { error } = await auth.signupUser(userCredentials)
+    if (error) {
+      dispatch({ type: ActionType.SET_AUTH_ERROR, payload: error.message })
+      return
     }
+
+    dispatch({ type: ActionType.SET_AUTH_ERROR, payload: '' })
+    await login({ email: userCredentials.email, password: userCredentials.password })
+    dispatch({ type: ActionType.SET_LOADING, payload: false })
   }
 
   const login = async (userCredentials: UserLoginCredentials) => {
-    setLoading(true)
-    try {
-      const { data, error } = await auth.loginUser(userCredentials)
-      if (error) {
-        setAuthError(error.message)
-        return
-      }
-      const { token, user: fetchedUser } = data!
-
-      local.store('access-token', token)
-      setAuthError('')
-      setUser(fetchedUser)
-    } catch (err) {
-      setAuthError('Unexpected error occurred')
-      console.error('An error occurred during login:', err)
-    } finally {
-      setLoading(false)
+    dispatch({ type: ActionType.SET_LOADING, payload: true })
+    const { data, error } = await auth.loginUser(userCredentials)
+    if (error) {
+      dispatch({ type: ActionType.SET_AUTH_ERROR, payload: error.message })
+      return
     }
+    const { token, user: fetchedUser } = data!
+
+    local.store('access-token', token)
+    dispatch({ type: ActionType.SET_AUTH_ERROR, payload: '' })
+    dispatch({ type: ActionType.SET_USER, payload: fetchedUser })
+    dispatch({ type: ActionType.SET_LOADING, payload: false })
   }
 
   const logout = () => {
     local.remove('access-token')
-    setUser(null)
+    dispatch({ type: ActionType.SET_USER, payload: null })
   }
 
   return {
-    user,
-    authError,
-    loading,
+    user: state.user,
+    authError: state.authError,
+    loading: state.loading,
     signup,
     login,
     logout,

@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 import type { LoginResponse, SignupResponse, UserLoginCredentials, UserSignupCredentials } from '../../types/auth'
 import type { ApiError } from '../../types/api'
 
@@ -10,13 +10,14 @@ const signupUser = async (userCredentials: UserSignupCredentials) => {
     })
     data = response.data
   } catch (err) {
-    error = {
-      message: 'Unexpected error has occurred',
-      statusCode: 500,
-      status: 'Internal Server Error',
-    }
-    if (axios.isAxiosError(err)) {
+    if (err instanceof AxiosError) {
       error = (err.response?.data as ApiError).error
+    } else {
+      error = {
+        message: 'Unexpected error has occurred',
+        statusCode: 500,
+        status: 'Internal Server Error',
+      }
     }
   }
   return { error, data }
@@ -30,13 +31,14 @@ const loginUser = async (userCredentials: UserLoginCredentials) => {
     })
     data = response.data
   } catch (err) {
-    error = {
-      message: 'Unexpected error has occurred',
-      statusCode: 500,
-      status: 'Internal Server Error',
-    }
-    if (axios.isAxiosError(err)) {
+    if (err instanceof AxiosError) {
       error = (err.response?.data as ApiError).error
+    } else {
+      error = {
+        message: 'Unexpected error has occurred',
+        statusCode: 500,
+        status: 'Internal Server Error',
+      }
     }
   }
   return { error, data }
@@ -50,13 +52,14 @@ const loginUserWithToken = async (token: string) => {
     })
     data = response.data
   } catch (err) {
-    error = {
-      message: 'Unexpected error has occurred',
-      statusCode: 500,
-      status: 'Internal Server Error',
-    }
-    if (axios.isAxiosError(err)) {
+    if (err instanceof AxiosError) {
       error = (err.response?.data as ApiError).error
+    } else {
+      error = {
+        message: 'Unexpected error has occurred',
+        statusCode: 500,
+        status: 'Internal Server Error',
+      }
     }
   }
   return { error, data }
