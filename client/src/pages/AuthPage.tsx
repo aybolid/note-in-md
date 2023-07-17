@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { useAuth } from '../contexts/AuthContext'
-import { Navigate, NavLink } from 'react-router-dom'
-import AuthForm from '../components/AuthForm/AuthForm'
+import { useAuth } from '../contexts/AuthContext';
+import { Navigate, NavLink } from 'react-router-dom';
+import AuthForm from '../components/AuthForm/AuthForm';
 
 export default function AuthPage() {
-  const { user, authError } = useAuth()
+  const { user, authError } = useAuth();
 
   if (user) {
-    return <Navigate to="/" />
+    return <Navigate to="/" />;
   }
 
   return (
@@ -16,5 +16,5 @@ export default function AuthPage() {
       <AuthForm />
       {authError && <p>{authError}</p>}
     </>
-  )
+  );
 }

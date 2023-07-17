@@ -1,6 +1,6 @@
-import { ErrorRequestHandler, NextFunction, Request, Response } from 'express'
-import AppError from '../utils/AppError'
-import { Error } from 'mongoose'
+import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
+import AppError from '../utils/AppError';
+import { Error } from 'mongoose';
 
 const errorHandler: ErrorRequestHandler = (
   err: AppError | Error,
@@ -8,8 +8,8 @@ const errorHandler: ErrorRequestHandler = (
   res: Response,
   _next: NextFunction
 ) => {
-  console.log(err)
-  res.status((err as AppError).statusCode || 500).json({ error: err })
-}
+  console.log(err);
+  res.status((err as AppError).statusCode || 500).json({ error: err });
+};
 
-export default errorHandler
+export default errorHandler;

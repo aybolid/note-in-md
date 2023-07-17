@@ -1,11 +1,11 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 export interface User extends mongoose.Document {
-  name: string
-  email: string
-  password: string
-  createdAt: Date
-  role: string
+  name: string;
+  email: string;
+  password: string;
+  createdAt: Date;
+  role: string;
 }
 
 const userSchema = new mongoose.Schema<User>(
@@ -36,6 +36,6 @@ const userSchema = new mongoose.Schema<User>(
     },
   },
   { versionKey: false, collection: 'users' }
-)
+);
 
-export default mongoose.model('User', userSchema, 'users')
+export default mongoose.model('User', userSchema, 'users');

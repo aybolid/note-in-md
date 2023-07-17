@@ -1,8 +1,8 @@
-import { useAuth } from '../contexts/AuthContext'
-import Button from '../stories/components/Button'
+import { useAuth } from '../contexts/AuthContext';
+import Button from '../stories/components/Button';
 
 export default function UserProfilePage() {
-  const { user, logout } = useAuth()
+  const { user, logout } = useAuth();
 
   return (
     <>
@@ -12,5 +12,5 @@ export default function UserProfilePage() {
         logout
       </Button>
     </>
-  )
+  );
 }

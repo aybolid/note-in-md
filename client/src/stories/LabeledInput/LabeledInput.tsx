@@ -1,21 +1,36 @@
-import { FC, ReactNode, Ref, SyntheticEvent, forwardRef, useState } from 'react'
-import { FieldErrors } from 'react-hook-form'
-import { UserSignupCredentials } from '../../types/auth'
-import { IoMdEyeOff, IoMdEye } from 'react-icons/io'
+import {
+  FC,
+  ReactNode,
+  Ref,
+  SyntheticEvent,
+  forwardRef,
+  useState,
+} from 'react';
+import { FieldErrors } from 'react-hook-form';
+import { UserSignupCredentials } from '../../types/auth';
+import { IoMdEyeOff, IoMdEye } from 'react-icons/io';
 
 interface LabeledInputProps {
-  label: string
-  onChange: (e: SyntheticEvent) => void
-  name: string
-  type: 'button' | 'text' | 'checkbox' | 'email' | 'password' | 'radio' | 'tel' | 'date'
-  errors: FieldErrors<UserSignupCredentials>
-  children?: ReactNode
-  placeholder?: string
-  autoComplete?: 'on' | 'off'
-  onBlur?: (e: SyntheticEvent) => void
-  ref?: Ref<HTMLInputElement>
-  className?: string
-  labelClassName?: string
+  label: string;
+  onChange: (e: SyntheticEvent) => void;
+  name: string;
+  type:
+    | 'button'
+    | 'text'
+    | 'checkbox'
+    | 'email'
+    | 'password'
+    | 'radio'
+    | 'tel'
+    | 'date';
+  errors: FieldErrors<UserSignupCredentials>;
+  children?: ReactNode;
+  placeholder?: string;
+  autoComplete?: 'on' | 'off';
+  onBlur?: (e: SyntheticEvent) => void;
+  ref?: Ref<HTMLInputElement>;
+  className?: string;
+  labelClassName?: string;
 }
 
 export const LabeledInput: FC<LabeledInputProps> = forwardRef(
@@ -36,11 +51,13 @@ export const LabeledInput: FC<LabeledInputProps> = forwardRef(
     },
     ref: Ref<HTMLInputElement>
   ) => {
-    const [inputType, setInputType] = useState(type)
+    const [inputType, setInputType] = useState(type);
 
     const togglePasswordVisibility = () => {
-      setInputType((prevType) => (prevType === 'password' ? 'text' : 'password'))
-    }
+      setInputType((prevType) =>
+        prevType === 'password' ? 'text' : 'password'
+      );
+    };
 
     return (
       <>
@@ -49,7 +66,9 @@ export const LabeledInput: FC<LabeledInputProps> = forwardRef(
           <div className={`${type === 'password' ? 'input-password' : ''}`}>
             <input
               className={`input ${className || ''} ${
-                errors[name as keyof UserSignupCredentials] ? 'border-red-500 focus:border-red-600' : ''
+                errors[name as keyof UserSignupCredentials]
+                  ? 'border-red-500 focus:border-red-600'
+                  : ''
               } `}
               name={name}
               onChange={onChange}
@@ -66,15 +85,19 @@ export const LabeledInput: FC<LabeledInputProps> = forwardRef(
                 onClick={togglePasswordVisibility}
                 type="button"
               >
-                {inputType === 'password' ? <IoMdEyeOff size={20} /> : <IoMdEye size={20} />}
+                {inputType === 'password' ? (
+                  <IoMdEyeOff size={20} />
+                ) : (
+                  <IoMdEye size={20} />
+                )}
               </button>
             )}
           </div>
           {children}
         </label>
       </>
-    )
+    );
   }
-)
+);
 
-export default LabeledInput
+export default LabeledInput;

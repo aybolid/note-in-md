@@ -1,10 +1,13 @@
-import { Request } from 'express'
+import { Request } from 'express';
 
 const getTokenFromReq = (req: Request) => {
-  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-    return req.headers.authorization.split(' ')[1]
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    return req.headers.authorization.split(' ')[1];
   }
-  return null
-}
+  return null;
+};
 
-export default getTokenFromReq
+export default getTokenFromReq;

@@ -1,22 +1,26 @@
-import { NextFunction, Request, Response } from 'express'
-import Note, { Note as INote } from '../models/Note'
+import { NextFunction, Request, Response } from 'express';
+import Note, { Note as INote } from '../models/Note';
 
-const deleteUserRelatedNotes = async (req: Request, res: Response, next: NextFunction) => {
+const deleteUserRelatedNotes = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const userId = req.params.id
+    const userId = req.params.id;
 
-    let deletedDoc: INote | null
+    let deletedDoc: INote | null;
     do {
-      deletedDoc = await Note.findOneAndDelete({ authorId: userId })
-    } while (deletedDoc)
+      deletedDoc = await Note.findOneAndDelete({ authorId: userId });
+    } while (deletedDoc);
 
-    next()
+    next();
   } catch (err) {
-    console.log(err)
-    next(err)
+    console.log(err);
+    next(err);
   }
-}
+};
 
-const noteMiddleware = { deleteUserRelatedNotes }
+const noteMiddleware = { deleteUserRelatedNotes };
 
-export default noteMiddleware
+export default noteMiddleware;

@@ -1,4 +1,4 @@
-import * as yup from 'yup'
+import * as yup from 'yup';
 
 export const validationSchema = yup.object({
   name: yup
@@ -16,4 +16,4 @@ export const validationSchema = yup.object({
     .string()
     .required('Confirm password is required')
     .oneOf([yup.ref('password')], 'Passwords must match'),
-})
+});
