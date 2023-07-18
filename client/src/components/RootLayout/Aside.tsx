@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../stories/components/Button';
+import Button from '../Button/Button';
 import { NavLink } from 'react-router-dom';
 import { MdMenuOpen } from 'react-icons/md';
 import useOutsideClick from '../../hooks/useOutsideClick';

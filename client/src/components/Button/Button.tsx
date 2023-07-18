@@ -5,7 +5,7 @@ type ButtonProps = (
   | { as: 'link'; path: string }
   | {
       as: 'btn';
-      onClick: (params: never) => void;
+      onClick?: (params: never) => void;
       type?: 'button' | 'submit' | 'reset';
     }
 ) & {
@@ -18,13 +18,13 @@ type ButtonProps = (
 const setVariantStyles = (variant: ButtonProps['variant']) => {
   switch (variant) {
     case 'primary':
-      return 'text-stone-50 hover:text-stone-100 bg-purple-500 hover:bg-purple-600';
+      return 'text-stone-50 hover:text-stone-100 bg-purple-500 dark:bg-purple-700 hover:bg-purple-600 dark:hover:bg-purple-800';
     case 'secondary':
-      return 'text-purple-500 hover:text-stone-100 border border-purple-500 hover:bg-purple-500';
+      return 'text-purple-700 dark:text-purple-600 hover:text-stone-100 dark:hover:text-stone-100 border border-purple-700 dark:border-purple-600 hover:bg-purple-700 dark:hover:border-purple-600';
     case 'success':
-      return 'text-stone-50 hover:text-stone-100 bg-green-500 hover:bg-green-600';
+      return 'text-stone-50 hover:text-stone-100 bg-green-600 dark:bg-green-700 hover:bg-green-700 dark:hover:bg-green-800';
     case 'danger':
-      return 'text-stone-50 hover:text-stone-100 bg-red-500 hover:bg-red-600';
+      return 'text-stone-50 hover:text-stone-100 bg-red-600 dark:bg-red-700 hover:bg-red-700 dark:hover:bg-red-800';
     default:
       return '';
   }

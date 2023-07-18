@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */ // ! зроби без цього бо у нас лінтеру це не подобається
 import { Navigate, NavLink } from 'react-router-dom';
 import AuthForm from '../components/AuthForm/AuthForm';
 import { useAppSelector } from '../lib/redux/store';
