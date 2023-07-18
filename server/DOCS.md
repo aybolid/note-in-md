@@ -1,22 +1,21 @@
 ## Authentication
 
 ### Signup user
-
 `/api/users/signup` - `POST`
 
 Request body example:
-
 ```json
 {
-  "name": "John",
-  "email": "email@email.com",
-  "password": "secret",
-  "passwordConfirm": "secret"
+	"name": "John",
+	"email": "email@email.com",
+	"password": "secret",
+	"passwordConfirm": "secret"
 }
 ```
 
-Validation:
+Returns => message, token, user
 
+Validation:
 1. Provide all required fields
 2. Provide a valid email
 3. Password must be at least 6 characters long
@@ -24,20 +23,19 @@ Validation:
 5. User with this email already exists
 
 ### Login user
-
 `/api/users/login` - `POST`
 
 Request body example:
-
 ```json
 {
-  "email": "email@email.com",
-  "password": "secret"
+	"email": "email@email.com",
+	"password": "secret"
 }
 ```
 
-Validation:
+Returns => message, token, user
 
+Validation:
 1. Provide all required fields
 2. User with this email does not exist
 3. Wrong password
