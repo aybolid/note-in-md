@@ -1,5 +1,6 @@
-import { useAuth } from '../../contexts/AuthContext';
 import { Navigate } from 'react-router-dom';
+import { useAppSelector } from '../../lib/redux/store';
+import { selectAuth } from '../../lib/redux/slices/auth/authSlice';
 
 export default function ProtectedRoute({
   children,
@@ -8,7 +9,7 @@ export default function ProtectedRoute({
   children: React.ReactNode;
   redirectTo?: string;
 }) {
-  const { user, loading } = useAuth();
+  const { user, loading } = useAppSelector(selectAuth);
 
   if (loading) {
     return <div>Loading...</div>;

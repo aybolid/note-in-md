@@ -50,7 +50,15 @@ const signup = async (req: Request, res: Response, next: NextFunction) => {
     const user = new User({ name, email, password: hashPassword, role });
 
     await user.save();
-    return res.status(201).json({ message: 'User created' });
+
+    const createdUser = await User.findOne({ email });
+    if (createdUser) {
+      const token = createToken(createdUser._id.toString());
+      const { password: _, ...safeUser } = createdUser.toObject();
+      return res
+        .status(200)
+        .json({ message: 'User created and logged in', token, user: safeUser });
+    }
   } catch (err) {
     console.log(err);
     return next(err);

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { useParams } from 'react-router-dom';
 import SignUpForm from './SignUpForm';
 import LogInForm from './LogInForm';

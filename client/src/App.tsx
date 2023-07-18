@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import AboutPage from './pages/AboutPage';
@@ -7,6 +8,9 @@ import ErrorPage from './pages/ErrorPage';
 import UserProfilePage from './pages/UserProfilePage';
 import ProtectedRoute from './components/utils/ProtectedRoute';
 import RootLayout from './components/RootLayout';
+import local from './utils/localStorage';
+import { useAppDispatch } from './lib/redux/store';
+import { loginWithToken } from './lib/redux/slices/auth/authThunk';
 
 const protect = (route: React.ReactNode) => {
   return <ProtectedRoute>{route}</ProtectedRoute>;
@@ -17,6 +21,15 @@ const layoutWrapper = (route: React.ReactNode) => {
 };
 
 export default function App() {
+  const dispatch = useAppDispatch();
+  React.useEffect(() => {
+    const token = local.get<string>('access-token');
+    const login = async () => {
+      await dispatch(loginWithToken(token));
+    };
+    login().catch((err) => console.log(err));
+  }, [dispatch]);
+
   return (
     <Router>
       <Routes>
