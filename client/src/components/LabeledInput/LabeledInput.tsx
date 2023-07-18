@@ -23,7 +23,6 @@ interface LabeledInputProps {
     | 'radio'
     | 'tel'
     | 'date';
-  errors: FieldErrors<UserSignupCredentials>;
   children?: ReactNode;
   placeholder?: string;
   autoComplete?: 'on' | 'off';
@@ -31,6 +30,7 @@ interface LabeledInputProps {
   ref?: Ref<HTMLInputElement>;
   className?: string;
   labelClassName?: string;
+  errors?: FieldErrors<UserSignupCredentials>;
 }
 
 export const LabeledInput: FC<LabeledInputProps> = forwardRef(
@@ -66,7 +66,7 @@ export const LabeledInput: FC<LabeledInputProps> = forwardRef(
           <div className={`${type === 'password' ? 'input-password' : ''}`}>
             <input
               className={`input ${className || ''} ${
-                errors[name as keyof UserSignupCredentials]
+                errors?.[name as keyof UserSignupCredentials]
                   ? 'border-red-500 focus:border-red-600'
                   : ''
               } `}

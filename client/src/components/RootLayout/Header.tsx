@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import Button from '../../stories/components/Button';
+import Button from '../Button/Button';
 import { useTheme } from '../../contexts/ThemeContext';
 
 const navLinks = {

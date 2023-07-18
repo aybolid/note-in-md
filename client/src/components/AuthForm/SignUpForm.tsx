@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import LabeledInput from '../../stories/LabeledInput/LabeledInput';
+import LabeledInput from '../LabeledInput/LabeledInput';
 import { useForm } from 'react-hook-form';
 import { UserSignupCredentials } from '../../types/auth';
 import { validationSchema } from './validateSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
-import Button from '../../stories/components/Button';
+import Button from '../Button/Button';
 import { NavLink } from 'react-router-dom';
 
 const SignUpForm = () => {
@@ -22,7 +22,6 @@ const SignUpForm = () => {
     console.log(data);
     reset();
   };
-  const onClick = () => console.log(); // ! шо це зроби онКлік :?
   return (
     <form
       className="border-2 border-purple-500 rounded-lg w-full m-auto max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg py-12 px-6 "
@@ -94,7 +93,6 @@ const SignUpForm = () => {
         className="block m-auto mt-12"
         size="medium"
         variant="primary"
-        onClick={onClick}
         type="submit"
       >
         Sign Up

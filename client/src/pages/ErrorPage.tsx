@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import Button from '../stories/components/Button';
+import Button from '../components/Button/Button';
 
 export default function ErrorPage() {
   // todo useRouterError()
