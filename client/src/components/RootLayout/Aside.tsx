@@ -1,10 +1,11 @@
 import React from 'react';
 import Button from '../../stories/components/Button';
-import { useAuth } from '../../contexts/AuthContext';
 import { NavLink } from 'react-router-dom';
 import { MdMenuOpen } from 'react-icons/md';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import useScrollLock from '../../hooks/useScrollLock';
+import { useAppSelector } from '../../lib/redux/store';
+import { selectAuth } from '../../lib/redux/slices/auth/authSlice';
 
 export default function Aside() {
   const [displayMenu, setDisplayMenu] = React.useState(false);
@@ -74,7 +75,8 @@ const MyNotes = () => {
 };
 
 const CurrentUser = () => {
-  const { user } = useAuth();
+  const { user } = useAppSelector(selectAuth);
+
   return user ? (
     <NavLink className={'text-xl hover:underline'} to={'/profile'}>
       {user.name}

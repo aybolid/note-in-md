@@ -4,14 +4,18 @@ import App from './App.tsx';
 import './index.css';
 import { AuthProvider } from './contexts/AuthContext.tsx';
 import { ThemeProvider } from './contexts/ThemeContext.tsx';
+import { Provider as ReduxProvider } from 'react-redux';
+import store from './lib/redux/store.ts';
 
 // eslint-disable-next-line react-refresh/only-export-components
 const Providers: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <>
-      <AuthProvider>
-        <ThemeProvider>{children}</ThemeProvider>
-      </AuthProvider>
+      <ReduxProvider store={store}>
+        <AuthProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </AuthProvider>
+      </ReduxProvider>
     </>
   );
 };

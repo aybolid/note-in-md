@@ -13,7 +13,9 @@ export type UserSignupCredentials = {
   passwordConfirm: string;
 };
 export type SignupResponse = {
-  message: 'User created';
+  message: 'User created and logged in';
+  token: string;
+  user: User;
 };
 
 export type UserLoginCredentials = {

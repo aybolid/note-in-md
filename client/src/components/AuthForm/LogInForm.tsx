@@ -22,7 +22,7 @@ const LogInForm = () => {
     console.log(data);
     reset();
   };
-  const onClick = () => console.log();
+  const onClick = () => console.log(); // ! шо це зроби онКлік :?
   return (
     <form
       className="border-2 border-purple-500 rounded-lg w-full m-auto max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg py-12 px-6 "
@@ -75,7 +75,7 @@ const LogInForm = () => {
         className="flex justify-center align-middle mt-4 "
         to={'/auth/signup'}
       >
-        Don't heva am account? Sign up!
+        Don't have an account? Sign up!
       </NavLink>
     </form>
   );
