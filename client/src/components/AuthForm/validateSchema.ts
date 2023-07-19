@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-export const validationSchema = yup.object({
+export const validationSchemaSignUp = yup.object({
   name: yup
     .string()
     .required('Name is required')
@@ -16,4 +16,13 @@ export const validationSchema = yup.object({
     .string()
     .required('Confirm password is required')
     .oneOf([yup.ref('password')], 'Passwords must match'),
+});
+
+export const validationSchemaLogIn = yup.object({
+  email: yup.string().email('Invalid email').required('Email is required'),
+  password: yup
+    .string()
+    .required('Password is required')
+    .min(6, 'Password must be at least 6 characters long')
+    .max(20, 'Password max length is 20 characters'),
 });
