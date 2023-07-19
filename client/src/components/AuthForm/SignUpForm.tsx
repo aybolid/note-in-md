@@ -2,24 +2,28 @@
 import LabeledInput from '../LabeledInput/LabeledInput';
 import { useForm } from 'react-hook-form';
 import { UserSignupCredentials } from '../../types/auth';
-import { validationSchema } from './validateSchema';
+import { validationSchemaSignUp } from './validateSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
 import Button from '../Button/Button';
 import { NavLink } from 'react-router-dom';
+import { useAppDispatch } from '../../lib/redux/store';
+import { signup } from '../../lib/redux/slices/auth/authThunk';
 
 const SignUpForm = () => {
+  const dispatch = useAppDispatch();
+
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors },
   } = useForm<UserSignupCredentials>({
-    resolver: yupResolver(validationSchema),
+    resolver: yupResolver(validationSchemaSignUp),
   });
 
-  const onSubmit = (data: UserSignupCredentials) => {
-    console.log(data);
+  const onSubmit = async (data: UserSignupCredentials) => {
+    await dispatch(signup(data));
     reset();
   };
   return (
