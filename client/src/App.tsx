@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import AboutPage from './pages/AboutPage';
@@ -25,11 +25,12 @@ export default function App() {
   const dispatch = useAppDispatch();
   const theme = useAppSelector(selectTheme);
 
+  const HTMLRef = useRef(document.querySelector('html'));
+
   React.useEffect(() => {
-    const HTMLRef = document.querySelector('html');
     theme.mode === 'dark'
-      ? HTMLRef?.classList.add('dark')
-      : HTMLRef?.classList.remove('dark');
+      ? HTMLRef.current?.classList.add('dark')
+      : HTMLRef.current?.classList.remove('dark');
   }, [theme]);
 
   React.useEffect(() => {
@@ -37,7 +38,7 @@ export default function App() {
     const login = async () => {
       await dispatch(loginWithToken(token));
     };
-    login().catch((err) => console.log(err));
+    login().catch((err) => console.log(err)); 
   }, [dispatch]);
 
   return (

@@ -1,5 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import local from '../../../../utils/localStorage';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 
 interface ThemeState {
   mode: 'light' | 'dark';
@@ -24,3 +26,10 @@ export const { setTheme } = ThemeSlice.actions;
 export const themeReducer = ThemeSlice.reducer;
 
 export const selectTheme = (state: { theme: ThemeState }) => state.theme;
+
+const persistConfig = {
+  key: 'theme',
+  storage,
+};
+
+export const themePersistreducer = persistReducer(persistConfig, themeReducer);
