@@ -11,7 +11,8 @@ const Providers: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <>
       <ReduxProvider store={store}>
-        <ThemeProvider>{children}</ThemeProvider>
+        {children}
+        {/* <ThemeProvider>{children}</ThemeProvider> */}
       </ReduxProvider>
     </>
   );

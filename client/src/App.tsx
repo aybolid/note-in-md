@@ -9,8 +9,9 @@ import UserProfilePage from './pages/UserProfilePage';
 import ProtectedRoute from './components/utils/ProtectedRoute';
 import RootLayout from './components/RootLayout';
 import local from './utils/localStorage';
-import { useAppDispatch } from './lib/redux/store';
+import { useAppDispatch, useAppSelector } from './lib/redux/store';
 import { loginWithToken } from './lib/redux/slices/auth/authThunk';
+import { selectTheme } from './lib/redux/slices/theme/themeSlice';
 
 const protect = (route: React.ReactNode) => {
   return <ProtectedRoute>{route}</ProtectedRoute>;
@@ -22,6 +23,15 @@ const layoutWrapper = (route: React.ReactNode) => {
 
 export default function App() {
   const dispatch = useAppDispatch();
+  const theme = useAppSelector(selectTheme);
+
+  React.useEffect(() => {
+    const HTMLRef = document.querySelector('html');
+    theme.mode === 'dark'
+      ? HTMLRef?.classList.add('dark')
+      : HTMLRef?.classList.remove('dark');
+  }, [theme]);
+
   React.useEffect(() => {
     const token = local.get<string>('access-token');
     const login = async () => {
