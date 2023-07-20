@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import Button from '../Button/Button';
-import { useTheme } from '../../contexts/ThemeContext';
+import ThemeToggler from '../ThemeToggler/ThemeToggler';
 
 const navLinks = {
   About: '/about',
@@ -8,7 +7,6 @@ const navLinks = {
 };
 
 export default function Header() {
-  const { theme, setTheme } = useTheme();
 
   return (
     <header className="bg-stone-50 dark:bg-stone-900 px-6 py-1 flex justify-between items-center gap-2">
@@ -34,14 +32,15 @@ export default function Header() {
         </NavLink>
       </nav>
       {/* // todo create dropdown menu for settings */}
-      <Button
+      {/* <Button
         as="btn"
         variant="secondary"
         size="small"
         onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
       >
         Settings
-      </Button>
+      </Button> */}
+      <ThemeToggler />
     </header>
   );
 }

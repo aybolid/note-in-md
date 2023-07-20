@@ -1,16 +1,17 @@
-import { useTheme } from '../../contexts/ThemeContext';
+import { selectTheme, setTheme } from '../../lib/redux/slices/theme/themeSlice';
+import { useAppDispatch, useAppSelector } from '../../lib/redux/store';
 import Button from '../Button/Button';
 import { MdDarkMode, MdOutlineDarkMode } from 'react-icons/md';
 
 const ThemeToggler = () => {
-  const { theme, setTheme } = useTheme();
-  console.log('theme: ', theme);
+  const dispatch = useAppDispatch();
+  const theme = useAppSelector(selectTheme);
 
   const toggleTheme = () => {
-    if (theme === 'dark') {
-      setTheme('light');
+    if (theme.mode === 'dark') {
+      dispatch(setTheme('light'));
     } else {
-      setTheme('dark');
+      dispatch(setTheme('dark'));
     }
   };
 
@@ -23,7 +24,7 @@ const ThemeToggler = () => {
         size="small"
         onClick={toggleTheme}
       >
-        {theme === 'dark' ? (
+        {theme.mode === 'dark' ? (
           <MdDarkMode size={'1.5rem'} />
         ) : (
           <MdOutlineDarkMode size={'1.5rem'} />
