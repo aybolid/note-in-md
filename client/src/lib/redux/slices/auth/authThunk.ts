@@ -8,6 +8,7 @@ import {
 } from '../../../../types/auth';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { ApiError } from '../../../../types/api';
+import local from '../../../../utils/localStorage';
 
 export const login = createAsyncThunk<
   { user: User; token: string },
@@ -77,9 +78,10 @@ export const signup = createAsyncThunk<
 
 export const loginWithToken = createAsyncThunk<
   User,
-  string | null,
+  undefined,
   { rejectValue: string }
->('auth/loginWithToken', async (token: string | null, { rejectWithValue }) => {
+>('auth/loginWithToken', async (_, { rejectWithValue }) => {
+  const token = local.get<string>('access-token');
   if (!token) return rejectWithValue('No access token');
   try {
     const response: AxiosResponse<Omit<LoginResponse, 'token'>> =
