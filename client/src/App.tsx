@@ -11,6 +11,7 @@ import RootLayout from './components/RootLayout';
 import local from './utils/localStorage';
 import { useAppDispatch } from './lib/redux/store';
 import { loginWithToken } from './lib/redux/slices/auth/authThunk';
+import NoteEditorPage from './pages/NoteEditorPage';
 
 const protect = (route: React.ReactNode) => {
   return <ProtectedRoute>{route}</ProtectedRoute>;
@@ -34,6 +35,7 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/" element={layoutWrapper(<MainPage />)} />
+        <Route path="/new-note" element={layoutWrapper(<NoteEditorPage />)} />
         <Route path="/about" element={layoutWrapper(<AboutPage />)} />
         <Route
           path="/md-tutorial"

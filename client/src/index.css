@@ -6,14 +6,11 @@
   body {
     @apply dark:text-orange-100 text-stone-700 bg-[url('/bg-light.svg')] dark:bg-[url('/bg-dark.svg')] bg-no-repeat bg-cover overflow-x-hidden;
   }
-  #root {
-    @apply min-h-screen h-full w-full flex;
-  }
 }
 
 @layer components {
   .input {
-    @apply block w-full rounded-md bg-transparent focus:border-2  border-purple-400 shadow-sm focus:border-purple-600 focus:ring focus:ring-0 focus:ring-opacity-50;
+    @apply block w-full rounded-md bg-transparent focus:border-2 border-purple-400 shadow-sm focus:border-purple-600 focus:ring focus:ring-0 focus:ring-opacity-50;
   }
   .input-password {
     @apply relative;
