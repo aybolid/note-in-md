@@ -6,6 +6,7 @@ import useOutsideClick from '../../hooks/useOutsideClick';
 import useScrollLock from '../../hooks/useScrollLock';
 import { useAppSelector } from '../../lib/redux/store';
 import { selectAuth } from '../../lib/redux/slices/auth/authSlice';
+import { selectNotes } from '../../lib/redux/slices/notes/notesSlice';
 
 export default function Aside() {
   const [displayMenu, setDisplayMenu] = React.useState(false);
@@ -52,24 +53,45 @@ export default function Aside() {
 }
 
 const MyNotes = () => {
+  const { userNotes, loadingNotes, notesError, amount } =
+    useAppSelector(selectNotes);
+  const notes = Object.values(userNotes);
+
   return (
     <div className="w-full px-4 flex-grow">
-      <h2 className="text-lg mb-1">My notes:</h2>
+      <h2 className="text-lg mb-1">
+        My notes <span className="opacity-50">{amount && `(${amount})`}</span>
+      </h2>
       <Button
         as="link"
         className="w-full flex justify-center items-center gap-2 font-semibold"
-        variant="primary"
+        variant="success"
         size="medium"
         path="/new-note"
       >
         New Note <MdNoteAdd size={25} />
       </Button>
-      <ul className="mt-4 w-full">
-        {/* //todo display notes */}
-        <p className="opacity-60 text-center">
-          This is a place for all of your notes
-        </p>
-      </ul>
+      {loadingNotes && <p>Loading...</p>}
+      {notesError ? (
+        <p>{notesError}</p>
+      ) : (
+        <ul className="mt-4 w-full flex flex-col gap-2">
+          {!!notes.length &&
+            notes.map((note) => (
+              <li key={note._id}>
+                <Button
+                  as="link"
+                  className="w-full flex justify-center items-center gap-2 font-semibold"
+                  variant="secondary"
+                  size="small"
+                  path={`/note/${note._id}`}
+                >
+                  {note.title}
+                </Button>
+              </li>
+            ))}
+        </ul>
+      )}
     </div>
   );
 };

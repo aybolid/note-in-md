@@ -8,11 +8,12 @@ import getTokenFromReq from '../utils/getTokenFromReq';
 interface NoteBody {
   title: string;
   content: string;
+  tags: string[];
 }
 
 const create = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { title, content } = req.body as NoteBody;
+    const { title, content, tags } = req.body as NoteBody;
     if (!title || !content) {
       return next(
         new AppError('Title and content are required', 400, 'Bad Request')
@@ -34,7 +35,7 @@ const create = async (req: Request, res: Response, next: NextFunction) => {
       );
     }
 
-    const note = new Note({ title, content, authorId });
+    const note = new Note({ title, content, authorId, tags });
 
     await note.save();
     return res.status(201).json({ message: 'Note created' });
@@ -80,9 +81,11 @@ const getMyAll = async (req: Request, res: Response, next: NextFunction) => {
     const authorId = decoded.id;
 
     const docs = await Note.find({ authorId: authorId });
-    res
-      .status(200)
-      .json({ status: 'Success', results: docs.length, notes: docs });
+    res.status(200).json({
+      status: 'Success',
+      results: docs ? docs.length : undefined,
+      notes: docs || [],
+    });
   } catch (err) {
     console.log(err);
     next(err);

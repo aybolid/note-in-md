@@ -13,7 +13,7 @@ interface AuthState {
 
 const initialState: AuthState = {
   logged: false,
-  loading: false,
+  loading: true,
   authError: '',
   user: null,
 };
@@ -64,10 +64,6 @@ const authSlice = createSlice({
         state.authError = action.payload || 'Unexpected error has occurred';
       });
     builder
-      .addCase(loginWithToken.pending, (state) => {
-        state.loading = true;
-        state.authError = '';
-      })
       .addCase(loginWithToken.fulfilled, (state, action) => {
         const user = action.payload;
         state.logged = true;

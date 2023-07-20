@@ -32,4 +32,4 @@ const persistConfig = {
   storage,
 };
 
-export const themePersistreducer = persistReducer(persistConfig, themeReducer);
+export const themePersistReducer = persistReducer(persistConfig, themeReducer);
