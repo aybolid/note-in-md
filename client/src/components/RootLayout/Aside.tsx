@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../Button/Button';
 import { NavLink } from 'react-router-dom';
-import { MdMenuOpen } from 'react-icons/md';
+import { MdMenuOpen, MdNoteAdd } from 'react-icons/md';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import useScrollLock from '../../hooks/useScrollLock';
 import { useAppSelector } from '../../lib/redux/store';
@@ -56,13 +56,13 @@ const MyNotes = () => {
     <div className="w-full px-4 flex-grow">
       <h2 className="text-lg mb-1">My notes:</h2>
       <Button
-        as="btn"
-        className="w-full"
+        as="link"
+        className="w-full flex justify-center items-center gap-2 font-semibold"
         variant="primary"
         size="medium"
-        onClick={() => console.log('create note')}
+        path="/new-note"
       >
-        + new note
+        New Note <MdNoteAdd size={25} />
       </Button>
       <ul className="mt-4 w-full">
         {/* //todo display notes */}

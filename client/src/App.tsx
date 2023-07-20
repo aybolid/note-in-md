@@ -6,6 +6,7 @@ import MarkdownTutorialPage from './pages/MarkdownTutorialPage';
 import AuthPage from './pages/AuthPage';
 import ErrorPage from './pages/ErrorPage';
 import UserProfilePage from './pages/UserProfilePage';
+import NoteEditorPage from './pages/NoteEditorPage';
 import ProtectedRoute from './components/utils/ProtectedRoute';
 import RootLayout from './components/RootLayout';
 import local from './utils/localStorage';
@@ -45,6 +46,7 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/" element={layoutWrapper(<MainPage />)} />
+        <Route path="/new-note" element={layoutWrapper(<NoteEditorPage />)} />
         <Route path="/about" element={layoutWrapper(<AboutPage />)} />
         <Route
           path="/md-tutorial"
