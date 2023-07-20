@@ -5,6 +5,9 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms')({ strategy: 'base' })],
+  plugins: [
+    require('@tailwindcss/forms')({ strategy: 'base' }),
+    require('@tailwindcss/typography'),
+  ],
   // mode: import.meta.env.PROD ? 'jit' : undefined,
 };
