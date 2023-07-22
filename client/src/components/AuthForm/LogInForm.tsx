@@ -9,6 +9,7 @@ import Button from '../Button/Button';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch } from '../../lib/redux/store';
 import { login } from '../../lib/redux/slices/auth/authThunk';
+import { MdArrowCircleLeft } from 'react-icons/md';
 
 const LogInForm = () => {
   const dispatch = useAppDispatch();
@@ -28,7 +29,7 @@ const LogInForm = () => {
   };
   return (
     <form
-      className="border-2 border-purple-500 rounded-lg w-full m-auto max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg py-12 px-6 "
+      className="relative border-2 grid place-items-center border-purple-500 rounded-lg w-full m-auto max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg py-16 px-6 "
       onSubmit={handleSubmit(onSubmit)}
     >
       <h2 className="text-center text-2xl mb-6">Log In</h2>
@@ -62,7 +63,13 @@ const LogInForm = () => {
         errors={errors}
         name="password"
       />
-      <NavLink to={'/'}>Go back to main page</NavLink>
+
+      <NavLink
+        className="absolute top-4 left-4 flex items-center transition-colors hover:text-purple-700 "
+        to={'/'}
+      >
+        <MdArrowCircleLeft size={'1.8rem'} />
+      </NavLink>
 
       <Button
         as="btn"
@@ -74,10 +81,12 @@ const LogInForm = () => {
         Log In
       </Button>
       <NavLink
-        className="flex justify-center align-middle mt-4 "
+        className=" inline-flex flex-col justify-center items-center mt-4 hover:text-purple-700"
         to={'/auth/signup'}
       >
-        Don't have an account? Sign up!
+        <span className="after:opacity-0 hover:after:opacity-100 after:transition-opacity after:w-full after:h-0.5 after:block after:bg-purple-700 after:mt-1 after:rounded-lg">
+          Don't have an account? Sign up!
+        </span>
       </NavLink>
     </form>
   );

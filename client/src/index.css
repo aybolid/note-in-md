@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply dark:text-orange-100 text-stone-700 bg-[url('/bg-light.svg')] dark:bg-[url('/bg-dark.svg')] bg-no-repeat bg-cover overflow-x-hidden;
+    @apply dark:text-orange-100 h-screen text-stone-700 bg-[url('/bg-light.svg')] dark:bg-[url('/bg-dark.svg')] bg-no-repeat bg-cover overflow-x-hidden;
   }
 }
 
