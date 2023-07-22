@@ -1,4 +1,4 @@
-import { useNavigate, useRouteError } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button/Button';
 
 export default function ErrorPage() {
