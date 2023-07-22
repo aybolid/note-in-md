@@ -10,7 +10,7 @@
 
 @layer components {
   .input {
-    @apply block w-full rounded-md bg-transparent focus:border-2 border-purple-400 shadow-sm focus:border-purple-600 focus:ring focus:ring-0 focus:ring-opacity-50;
+    @apply block w-full rounded-md bg-transparent focus:border-2 border-purple-400 shadow-sm focus:border-purple-600  focus:ring-0 focus:ring-opacity-50;
   }
   .input-password {
     @apply relative;
