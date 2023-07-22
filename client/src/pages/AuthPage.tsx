@@ -1,4 +1,4 @@
-import { Navigate, NavLink, useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { useAppSelector } from '../lib/redux/store';
 import { selectAuth } from '../lib/redux/slices/auth/authSlice';
 import LogInForm from '../components/AuthForm/LogInForm';
