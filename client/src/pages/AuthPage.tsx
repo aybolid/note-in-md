@@ -13,10 +13,9 @@ export default function AuthPage() {
   }
 
   return (
-    <>
-      <NavLink to={'/'}>Go Back</NavLink>
+    <div className="w-full h-screen flex justify-center px-3">
       {action === 'login' ? <LogInForm /> : <SignUpForm />}
       {authError && <p>{authError}</p>}
-    </>
+    </div>
   );
 }
