@@ -6,11 +6,14 @@ const navLinks = {
   Markdown: '/md-tutorial',
 };
 
-export default function Header() {
-
+export default function Header({ displayMenu }: { displayMenu: boolean }) {
   return (
     <header className="bg-stone-50 dark:bg-stone-900 px-6 py-1 flex justify-between items-center gap-2">
-      <nav className="flex justify-center items-center gap-6">
+      <nav
+        className={`${
+          displayMenu ? 'ml-[16rem]' : 'ml-0'
+        } flex justify-center items-center gap-6 duration-150 ease-in-out`}
+      >
         {Object.entries(navLinks).map(([name, path]) => (
           <NavLink
             key={name}
@@ -31,15 +34,6 @@ export default function Header() {
           Error
         </NavLink>
       </nav>
-      {/* // todo create dropdown menu for settings */}
-      {/* <Button
-        as="btn"
-        variant="secondary"
-        size="small"
-        onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-      >
-        Settings
-      </Button> */}
       <ThemeToggler />
     </header>
   );

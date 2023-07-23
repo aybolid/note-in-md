@@ -1,20 +1,21 @@
+import React from 'react';
 import Aside from './Aside';
 import Header from './Header';
+import { Outlet } from 'react-router-dom';
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout() {
+  const [displayMenu, setDisplayMenu] = React.useState(false);
   return (
-    <div className="min-h-screen h-full w-full flex;">
-      <Aside />
-      <div className="w-full min-h-full flex-grow flex flex-col">
-        <Header />
-        <main className="p-4 h-full flex-grow">
-          <section className="container max-w-5xl mx-auto">{children}</section>
+    <>
+      <div className="h-full flex flex-col">
+        <Header displayMenu={displayMenu} />
+        <main className="flex-grow p-4 pb-16">
+          <section className="container max-w-5xl mx-auto h-full">
+            <Outlet />
+          </section>
         </main>
       </div>
-    </div>
+      <Aside displayMenu={displayMenu} setDisplayMenu={setDisplayMenu} />
+    </>
   );
 }

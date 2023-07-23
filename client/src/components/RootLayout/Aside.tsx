@@ -3,36 +3,36 @@ import Button from '../Button/Button';
 import { NavLink } from 'react-router-dom';
 import { MdMenuOpen, MdNoteAdd } from 'react-icons/md';
 import useOutsideClick from '../../hooks/useOutsideClick';
-import useScrollLock from '../../hooks/useScrollLock';
 import { useAppSelector } from '../../lib/redux/store';
 import { selectAuth } from '../../lib/redux/slices/auth/authSlice';
 import { selectNotes } from '../../lib/redux/slices/notes/notesSlice';
 
-export default function Aside() {
-  const [displayMenu, setDisplayMenu] = React.useState(false);
+type AsideProps = {
+  displayMenu: boolean;
+  setDisplayMenu: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function Aside({ displayMenu, setDisplayMenu }: AsideProps) {
   const asideRef = React.useRef<HTMLDivElement>(null);
 
   useOutsideClick(asideRef, () => setDisplayMenu(false));
-  useScrollLock(displayMenu);
 
   return (
     <>
       <aside
         ref={asideRef}
-        className={`w-64 flex absolute z-50 top-0 bg-stone-100 dark:bg-stone-950 h-screen justify-start items-center flex-col gap-4 border-r border-stone-300 dark:border-black overflow-y-auto duration-150 ease-in-out ${
+        className={`w-64 flex fixed z-50 top-0 bg-stone-100 dark:bg-stone-950 h-screen justify-start items-center flex-col gap-4 border-r border-stone-300 dark:border-black overflow-y-auto duration-150 ease-in-out ${
           displayMenu ? 'left-0' : '-left-64'
         }`}
       >
         <NavLink
           onClick={() => setDisplayMenu(false)}
           to={'/'}
-          className="text-2xl px-4 py-2 w-full text-center font-semibold bg-stone-50 dark:bg-stone-900 hover:underline"
+          className="text-2xl px-4 py-3 w-full text-center font-semibold bg-stone-50 dark:bg-stone-900 hover:underline"
         >
           NoteInMD
         </NavLink>
-
         <MyNotes />
-
         <div className="p-4 w-full">
           <CurrentUser />
         </div>
@@ -43,7 +43,7 @@ export default function Aside() {
           variant="primary"
           size="small"
           onClick={() => setDisplayMenu(!displayMenu)}
-          className="absolute bottom-4 left-4 rotate-180"
+          className="fixed bottom-4 left-4 rotate-180 z-50"
         >
           <MdMenuOpen size={25} />
         </Button>

@@ -1,10 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Roboto+Condensed:wght@300;400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  html,
   body {
-    @apply dark:text-orange-100 h-screen text-stone-700 bg-[url('/bg-light.svg')] dark:bg-[url('/bg-dark.svg')] bg-no-repeat bg-cover overflow-x-hidden;
+    @apply h-full w-full font-['Roboto_Condensed',_sans-serif];
+  }
+  body {
+    @apply dark:text-orange-100 text-stone-700 bg-[url('/bg-light.svg')] dark:bg-[url('/bg-dark.svg')] bg-no-repeat bg-cover bg-fixed overflow-x-hidden;
+  }
+  #root {
+    @apply h-full w-full;
   }
 }
 
@@ -17,5 +25,24 @@
   }
   .button {
     @apply p-2 border border-transparent tracking-wide inline-flex justify-center align-middle rounded-md duration-200 ease-in-out hover:scale-105;
+  }
+  /* Prose styles */
+  .prose {
+    @apply font-['Roboto_Condensed',_sans-serif];
+  }
+  .prose-p {
+    @apply prose-p:dark:text-orange-50 prose-p:text-stone-600 prose-p:leading-5;
+  }
+  .prose-headings {
+    @apply prose-headings:dark:text-purple-600 prose-headings:text-purple-600 prose-h1:!border-b-2 prose-headings:!border-purple-400 prose-headings:dark:!border-purple-400;
+  }
+  .prose-hr {
+    @apply prose-hr:!h-0.5 prose-hr:!rounded-md prose-hr:!border-none prose-hr:dark:!bg-stone-700 prose-hr:!bg-stone-300;
+  }
+  .prose-code {
+    @apply prose-code:dark:!bg-stone-950 prose-pre:dark:!bg-stone-950 prose-code:!bg-stone-50 prose-pre:!bg-stone-50 prose-code:text-stone-700 prose-code:dark:text-stone-300 prose-code:!font-['Fira_Code',_monospace];
+  }
+  .prose-img {
+    @apply prose-img:!bg-transparent;
   }
 }

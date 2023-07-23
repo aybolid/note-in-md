@@ -18,10 +18,6 @@ const protect = (route: React.ReactNode) => {
   return <ProtectedRoute>{route}</ProtectedRoute>;
 };
 
-const layoutWrapper = (route: React.ReactNode) => {
-  return <RootLayout>{route}</RootLayout>;
-};
-
 export default function App() {
   const dispatch = useAppDispatch();
   const theme = useAppSelector(selectTheme);
@@ -49,22 +45,15 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={layoutWrapper(<MainPage />)} />
-        <Route path="/new-note" element={layoutWrapper(<NoteEditorPage />)} />
-        <Route
-          path="/note/:id"
-          element={protect(layoutWrapper(<NoteEditorPage />))}
-        />
-        <Route path="/about" element={layoutWrapper(<AboutPage />)} />
-        <Route
-          path="/md-tutorial"
-          element={layoutWrapper(<MarkdownTutorialPage />)}
-        />
+        <Route path="/" element={<RootLayout />}>
+          <Route index element={<MainPage />} />
+          <Route path="/new-note" element={<NoteEditorPage />} />
+          <Route path="/note/:id" element={protect(<NoteEditorPage />)} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/md-tutorial" element={<MarkdownTutorialPage />} />
+          <Route path="/profile" element={protect(<UserProfilePage />)} />
+        </Route>
         <Route path="/auth/:action" element={<AuthPage />} />
-        <Route
-          path="/profile"
-          element={protect(layoutWrapper(<UserProfilePage />))}
-        />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>
