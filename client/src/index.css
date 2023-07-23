@@ -29,7 +29,7 @@
   }
   /* Prose styles */
   .prose {
-    font-family: 'Roboto Condensed', sans-serif;
+    @apply font-['Roboto_Condensed',_sans-serif];
   }
   .prose-p {
     @apply prose-p:dark:text-orange-50 prose-p:text-stone-600 prose-p:leading-5;

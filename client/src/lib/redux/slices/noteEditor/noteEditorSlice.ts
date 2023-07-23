@@ -60,51 +60,48 @@ export const { setNote, setNoteTitle, setNoteContent, toggleEditor } =
 export const selectNoteEditor = (state: RootState) => state.noteEditor;
 
 const allPossibleMarkdown = `
-# Heading 1
-## Heading 2
-### Heading 3
-#### Heading 4
-##### Heading 5
-###### Heading 6
+# Initial Test Note
 
----
+This is a test note. It contains all possible markdown syntax (no). It's just a test. :) Lorem ipsum dolor sit amet, 
+consectetur adipiscing elit. Nullam euismod, nisi ut pretium varius, mauris nunc viverra leo, vel condimentum nunc nibh id nisi.
 
-**Bold Text**
-*Italic Text*
-***Bold and Italic Text***
+### Image
 
----
-
-> Blockquote
-
----
-
-1. Ordered List Item 1
-2. Ordered List Item 2
-3. Ordered List Item 3
-
----
-
-- Unordered List Item 1
-- Unordered List Item 2
-- Unordered List Item 3
-
----
-
-[Link](https://www.example.com)
 ![Image Alt Text](https://pngimg.com/uploads/calculator/calculator_PNG7938.png)
 
 ---
 
+### Some Code Tests
+
 \`Inline Code\`
 \`\`\`js
-// Code Block
+// JS
 function greet(name) {
   return 'Hello, ' + name + '!';
 }
 \`\`\`
 
+\`\`\`python
+# Python
+def greet(name):
+  return 'Hello, ' + name + '!'
+\`\`\`
+
+\`\`\`rust
+// Rust
+fn main() {
+  let mut hello = String::from("Hello, World!");
+  println!(hello);
+}
+\`\`\`
+
+> I dont know how to style copy button in code blocks...
+
+^ this blockquote btw...
+
 ---
+
+### Table
 
 | Column 1  | Column 2 |
 | --------- | -------- |
@@ -113,13 +110,39 @@ function greet(name) {
 
 ---
 
+## Text styles
+##### Bold
+__Bold Text__
+##### Italic
+*Italic Text*
+##### Italic + Bold
+***Italic + Bold Text***
+##### Strikethrough
 ~~Strikethrough Text~~
 
 ---
 
+## Lists
+### Ordered List
+1. Ordered List Item 1
+2. Ordered List Item 2
+
+### Unordered List
+- Unordered List Item 1
+- Unordered List Item 2
+
+### Checklist
 - [x] Task 1 (completed)
 - [ ] Task 2 (incomplete)
 - [ ] Task 3 (incomplete)
+
+### Combined List
+1. Todo
+    - [x] Task 1 (completed)
+    - [ ] Task 2 (incomplete)
+2. Something else
+    - item 1
+    - item 2
 
 Here's an inline HTML code: <span style="color: red;">Red Text</span>
 `;
