@@ -1,9 +1,9 @@
-import MDEditor from '@uiw/react-md-editor';
-import { useAppDispatch, useAppSelector } from '../../lib/redux/store';
 import {
   selectNoteEditor,
   setNoteContent,
-} from '../../lib/redux/slices/noteEditor/noteEditorSlice';
+} from '@/lib/redux/slices/noteEditor/noteEditorSlice';
+import { useAppDispatch, useAppSelector } from '@/lib/redux/store';
+import MDEditor from '@uiw/react-md-editor';
 
 export default function NoteEditor() {
   const dispatch = useAppDispatch();

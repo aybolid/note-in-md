@@ -1,8 +1,8 @@
+import { RootState } from '@/lib/redux/rootReducer';
+import { Note } from '@/types/notes';
+import { getTags } from '@/utils/noteTags';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Note } from '../../../../types/notes';
-import { RootState } from '../../rootReducer';
 import { format } from 'date-fns';
-import { getTags } from '../../../../utils/noteTags';
 
 type NewNote = Omit<Note, '_id' | 'createdAt' | 'updatedAt' | 'authorId'>;
 

@@ -1,7 +1,7 @@
+import { MyAllNotesResponse } from '@/types/notes';
+import local from '@/utils/localStorage';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { MyAllNotesResponse } from '../../../../types/notes';
 import axios, { AxiosResponse } from 'axios';
-import local from '../../../../utils/localStorage';
 
 export const getUserNotes = createAsyncThunk<
   MyAllNotesResponse,

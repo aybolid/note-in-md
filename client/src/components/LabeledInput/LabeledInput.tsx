@@ -1,3 +1,4 @@
+import { UserSignupCredentials } from '@/types/auth';
 import {
   FC,
   ReactNode,
@@ -7,8 +8,7 @@ import {
   useState,
 } from 'react';
 import { FieldErrors } from 'react-hook-form';
-import { UserSignupCredentials } from '../../types/auth';
-import { IoMdEyeOff, IoMdEye } from 'react-icons/io';
+import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
 
 interface LabeledInputProps {
   label: string;

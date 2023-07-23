@@ -1,16 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer, { RootState } from './rootReducer';
 import {
-  persistStore,
   FLUSH,
-  REHYDRATE,
   PAUSE,
   PERSIST,
+  persistStore,
   PURGE,
   REGISTER,
+  REHYDRATE,
 } from 'redux-persist';
+import rootReducer, { RootState } from './rootReducer';
 
-import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 const store = configureStore({
   reducer: rootReducer,

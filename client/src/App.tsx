@@ -1,18 +1,18 @@
 import React, { useRef } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MainPage from './pages/MainPage';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import RootLayout from './components/RootLayout';
+import ProtectedRoute from './components/utils/ProtectedRoute';
+import { loginWithToken } from './lib/redux/slices/auth/authThunk';
+import { getUserNotes } from './lib/redux/slices/notes/notesThunk';
+import { selectTheme } from './lib/redux/slices/theme/themeSlice';
+import { useAppDispatch, useAppSelector } from './lib/redux/store';
 import AboutPage from './pages/AboutPage';
-import MarkdownTutorialPage from './pages/MarkdownTutorialPage';
 import AuthPage from './pages/AuthPage';
 import ErrorPage from './pages/ErrorPage';
-import UserProfilePage from './pages/UserProfilePage';
+import MainPage from './pages/MainPage';
+import MarkdownTutorialPage from './pages/MarkdownTutorialPage';
 import NoteEditorPage from './pages/NoteEditorPage';
-import ProtectedRoute from './components/utils/ProtectedRoute';
-import RootLayout from './components/RootLayout';
-import { useAppDispatch, useAppSelector } from './lib/redux/store';
-import { loginWithToken } from './lib/redux/slices/auth/authThunk';
-import { selectTheme } from './lib/redux/slices/theme/themeSlice';
-import { getUserNotes } from './lib/redux/slices/notes/notesThunk';
+import UserProfilePage from './pages/UserProfilePage';
 
 const protect = (route: React.ReactNode) => {
   return <ProtectedRoute>{route}</ProtectedRoute>;

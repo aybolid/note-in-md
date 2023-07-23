@@ -1,11 +1,11 @@
+import useOutsideClick from '@/hooks/useOutsideClick';
+import { selectAuth } from '@/lib/redux/slices/auth/authSlice';
+import { selectNotes } from '@/lib/redux/slices/notes/notesSlice';
+import { useAppSelector } from '@/lib/redux/store';
 import React from 'react';
-import Button from '../Button/Button';
-import { NavLink } from 'react-router-dom';
 import { MdMenuOpen, MdNoteAdd } from 'react-icons/md';
-import useOutsideClick from '../../hooks/useOutsideClick';
-import { useAppSelector } from '../../lib/redux/store';
-import { selectAuth } from '../../lib/redux/slices/auth/authSlice';
-import { selectNotes } from '../../lib/redux/slices/notes/notesSlice';
+import { NavLink } from 'react-router-dom';
+import Button from '../Button/Button';
 
 type AsideProps = {
   displayMenu: boolean;

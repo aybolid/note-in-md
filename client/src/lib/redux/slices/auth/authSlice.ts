@@ -1,8 +1,8 @@
-import { createSlice, ActionReducerMapBuilder } from '@reduxjs/toolkit';
-import { User } from '../../../../types/auth';
-import { RootState } from '../../rootReducer';
+import { RootState } from '@/lib/redux/rootReducer';
+import { User } from '@/types/auth';
+import local from '@/utils/localStorage';
+import { ActionReducerMapBuilder, createSlice } from '@reduxjs/toolkit';
 import { login, loginWithToken, signup } from './authThunk';
-import local from '../../../../utils/localStorage';
 
 interface AuthState {
   logged: boolean;

@@ -12,6 +12,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:react-hooks/recommended',
     'plugin:storybook/recommended',
+    'plugin:path/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -20,7 +21,7 @@ module.exports = {
     project: true,
     tsconfigRootDir: __dirname,
   },
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', 'path'],
   rules: {
     'react-refresh/only-export-components': [
       'warn',
@@ -29,5 +30,6 @@ module.exports = {
       },
     ],
     '@typescript-eslint/no-non-null-assertion': 'off',
+    'path/no-relative-imports': 'error',
   },
 };

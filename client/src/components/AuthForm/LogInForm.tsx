@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import LabeledInput from '../LabeledInput/LabeledInput';
-import { useForm } from 'react-hook-form';
-import { UserLoginCredentials } from '../../types/auth';
-import { validationSchemaLogIn } from './validateSchema';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { login } from '@/lib/redux/slices/auth/authThunk';
+import { useAppDispatch } from '@/lib/redux/store';
+import { UserLoginCredentials } from '@/types/auth';
 import { ErrorMessage } from '@hookform/error-message';
-import Button from '../Button/Button';
-import { NavLink } from 'react-router-dom';
-import { useAppDispatch } from '../../lib/redux/store';
-import { login } from '../../lib/redux/slices/auth/authThunk';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
 import { MdArrowCircleLeft } from 'react-icons/md';
+import { NavLink } from 'react-router-dom';
+import Button from '../Button/Button';
+import LabeledInput from '../LabeledInput/LabeledInput';
+import { validationSchemaLogIn } from './validateSchema';
 
 const LogInForm = () => {
   const dispatch = useAppDispatch();

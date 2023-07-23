@@ -1,6 +1,6 @@
+import { selectAuth } from '@/lib/redux/slices/auth/authSlice';
+import { useAppSelector } from '@/lib/redux/store';
 import { Navigate } from 'react-router-dom';
-import { useAppSelector } from '../../lib/redux/store';
-import { selectAuth } from '../../lib/redux/slices/auth/authSlice';
 
 export default function ProtectedRoute({
   children,

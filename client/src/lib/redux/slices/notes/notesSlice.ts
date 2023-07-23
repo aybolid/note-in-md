@@ -1,7 +1,7 @@
+import { RootState } from '@/lib/redux/rootReducer';
+import type { Note } from '@/types/notes';
 import { ActionReducerMapBuilder, createSlice } from '@reduxjs/toolkit';
-import type { Note } from '../../../../types/notes';
 import { getUserNotes } from './notesThunk';
-import { RootState } from '../../rootReducer';
 
 interface NotesState {
   userNotes: { [key: string]: Note };

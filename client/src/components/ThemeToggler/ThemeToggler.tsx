@@ -1,7 +1,7 @@
-import { selectTheme, setTheme } from '../../lib/redux/slices/theme/themeSlice';
-import { useAppDispatch, useAppSelector } from '../../lib/redux/store';
-import Button from '../Button/Button';
+import { selectTheme, setTheme } from '@/lib/redux/slices/theme/themeSlice';
+import { useAppDispatch, useAppSelector } from '@/lib/redux/store';
 import { MdDarkMode, MdOutlineDarkMode } from 'react-icons/md';
+import Button from '../Button/Button';
 
 const ThemeToggler = () => {
   const dispatch = useAppDispatch();

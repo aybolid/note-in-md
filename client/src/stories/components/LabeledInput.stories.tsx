@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import LabeledInputComponennt from '../../components/LabeledInput/LabeledInput';
+import LabeledInputComponennt from '@/components/LabeledInput/LabeledInput';
 
 const meta: Meta<typeof LabeledInputComponennt> = {
   component: LabeledInputComponennt,
