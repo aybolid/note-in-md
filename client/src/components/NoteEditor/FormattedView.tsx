@@ -1,6 +1,6 @@
+import { selectNoteEditor } from '@/lib/redux/slices/noteEditor/noteEditorSlice';
+import { useAppSelector } from '@/lib/redux/store';
 import MDEditor from '@uiw/react-md-editor';
-import { useAppSelector } from '../../lib/redux/store';
-import { selectNoteEditor } from '../../lib/redux/slices/noteEditor/noteEditorSlice';
 
 export default function FormattedView() {
   const { note } = useAppSelector(selectNoteEditor);

@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   theme: themePersistReducer,
   notes: notesReducer,
-  noteEditor: noteEditorReducer
+  noteEditor: noteEditorReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

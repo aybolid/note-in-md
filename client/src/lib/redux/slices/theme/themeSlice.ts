@@ -1,7 +1,7 @@
+import local from '@/utils/localStorage';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import local from '../../../../utils/localStorage';
 import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import storage from 'redux-persist/lib/storage';
 
 interface ThemeState {
   mode: 'light' | 'dark';

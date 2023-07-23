@@ -1,8 +1,8 @@
+import { RootState } from '@/lib/redux/rootReducer';
+import { Note } from '@/types/notes';
+import { getTags } from '@/utils/noteTags';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Note } from '../../../../types/notes';
-import { RootState } from '../../rootReducer';
 import { format } from 'date-fns';
-import { getTags } from '../../../../utils/noteTags';
 
 type NewNote = Omit<Note, '_id' | 'createdAt' | 'updatedAt' | 'authorId'>;
 
@@ -37,15 +37,15 @@ const noteEditorSlice = createSlice({
       state.note = action.payload;
     },
     setNoteTitle(state, action: PayloadAction<string>) {
-      state.note!.title = action.payload;
+      state.note.title = action.payload;
       state.isEdited = true;
     },
     setNoteContent(state, action: PayloadAction<string | undefined>) {
       if (!action.payload) return;
 
-      state.note!.content = action.payload;
+      state.note.content = action.payload;
 
-      state.note!.tags = getTags(action.payload, /\+\[.*?\]/g);
+      state.note.tags = getTags(action.payload, /\+\[.*?\]/g);
 
       state.isEdited = true;
     },

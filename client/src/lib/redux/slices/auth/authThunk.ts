@@ -1,14 +1,14 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { ApiError } from '@/types/api';
 import {
   LoginResponse,
   SignupResponse,
   User,
   UserLoginCredentials,
   UserSignupCredentials,
-} from '../../../../types/auth';
+} from '@/types/auth';
+import local from '@/utils/localStorage';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { ApiError } from '../../../../types/api';
-import local from '../../../../utils/localStorage';
 
 export const login = createAsyncThunk<
   { user: User; token: string },

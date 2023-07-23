@@ -1,13 +1,13 @@
-import React from 'react';
-import Button from '../Button/Button';
-import { useAppDispatch, useAppSelector } from '../../lib/redux/store';
 import {
   selectNoteEditor,
   setNoteTitle,
   toggleEditor,
-} from '../../lib/redux/slices/noteEditor/noteEditorSlice';
-import { NavLink } from 'react-router-dom';
+} from '@/lib/redux/slices/noteEditor/noteEditorSlice';
+import { useAppDispatch, useAppSelector } from '@/lib/redux/store';
+import React from 'react';
 import { MdEdit } from 'react-icons/md';
+import { NavLink } from 'react-router-dom';
+import Button from '../Button/Button';
 
 export default function NoteHead() {
   const dispatch = useAppDispatch();

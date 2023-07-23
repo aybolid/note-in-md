@@ -1,14 +1,14 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../lib/redux/store';
-import { selectNote, selectNotes } from '../lib/redux/slices/notes/notesSlice';
+import FormattedView from '../components/NoteEditor/FormattedView';
+import NoteEditor from '../components/NoteEditor/NoteEditor';
+import NoteHead from '../components/NoteEditor/NoteHead';
 import {
   selectNoteEditor,
   setNote,
 } from '../lib/redux/slices/noteEditor/noteEditorSlice';
-import NoteHead from '../components/NoteEditor/NoteHead';
-import NoteEditor from '../components/NoteEditor/NoteEditor';
-import FormattedView from '../components/NoteEditor/FormattedView';
+import { selectNote, selectNotes } from '../lib/redux/slices/notes/notesSlice';
+import { useAppDispatch, useAppSelector } from '../lib/redux/store';
 
 export default function NoteEditorPage() {
   const dispatch = useAppDispatch();
