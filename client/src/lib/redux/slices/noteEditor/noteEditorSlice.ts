@@ -3,6 +3,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Note } from '../../../../types/notes';
 import { RootState } from '../../rootReducer';
 import { format } from 'date-fns';
+import { getNoteTags } from '../../../../utils/md';
 
 type NewNote = Omit<Note, '_id' | 'createdAt' | 'updatedAt' | 'authorId'>;
 
@@ -42,6 +43,9 @@ const noteEditorSlice = createSlice({
       if (!action.payload) return;
 
       state.note!.content = action.payload;
+
+      state.note!.tags = getNoteTags(action.payload);
+
       state.isEdited = true;
     },
     toggleEditor(state) {
