@@ -2,7 +2,7 @@ import MDEditor from '@uiw/react-md-editor';
 import { useAppSelector } from '../../lib/redux/store';
 import { selectNoteEditor } from '../../lib/redux/slices/noteEditor/noteEditorSlice';
 import React from 'react';
-import { getNoteTags, removeTagsFromMD } from '../../utils/md';
+import { removeTagsFromMD } from '../../utils/md';
 
 export default function FormattedView() {
   const { note } = useAppSelector(selectNoteEditor);
