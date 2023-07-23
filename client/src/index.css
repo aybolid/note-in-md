@@ -1,8 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Roboto+Condensed:wght@300;400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Roboto+Condensed:wght@300;400;700&display=swap');
 
 @layer base {
   html,

@@ -10,7 +10,7 @@ export default function NoteEditor() {
   const { note } = useAppSelector(selectNoteEditor);
   return (
     <MDEditor
-      className="!h-5/6 !shadow-none bg-stone-100 dark:bg-stone-900 rounded-md px-4 py-2 text-stone-700 dark:text-stone-300"
+      className="!h-full !shadow-none bg-stone-100 dark:bg-stone-900 rounded-md px-4 py-2 text-stone-700 dark:text-stone-300"
       value={note?.content}
       preview="edit"
       hideToolbar

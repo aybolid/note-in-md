@@ -1,9 +1,8 @@
-/* eslint-disable no-useless-escape */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Note } from '../../../../types/notes';
 import { RootState } from '../../rootReducer';
 import { format } from 'date-fns';
-import { getNoteTags } from '../../../../utils/md';
+import { getTags } from '../../../../utils/noteTags';
 
 type NewNote = Omit<Note, '_id' | 'createdAt' | 'updatedAt' | 'authorId'>;
 
@@ -11,12 +10,14 @@ interface NoteEditorState {
   displayEditor: boolean;
   note: Note | NewNote | null;
   isEdited: boolean;
+  // tagPattern: string;
 }
 
 const initialState: NoteEditorState = {
   displayEditor: true,
   note: null,
   isEdited: false,
+  // tagPattern: /\+\[.*?\]/g.toString(),
 };
 
 const noteEditorSlice = createSlice({
@@ -27,7 +28,7 @@ const noteEditorSlice = createSlice({
       if (!action.payload) {
         const newNote: NewNote = {
           title: format(new Date(), 'EEEE, MM.dd yyyy'),
-          content: allPossibleMarkdown,
+          content: testMD,
           tags: [],
         };
         state.note = newNote;
@@ -44,7 +45,7 @@ const noteEditorSlice = createSlice({
 
       state.note!.content = action.payload;
 
-      state.note!.tags = getNoteTags(action.payload);
+      state.note!.tags = getTags(action.payload, /\+\[.*?\]/g);
 
       state.isEdited = true;
     },
@@ -63,7 +64,8 @@ export const { setNote, setNoteTitle, setNoteContent, toggleEditor } =
   noteEditorSlice.actions;
 export const selectNoteEditor = (state: RootState) => state.noteEditor;
 
-const allPossibleMarkdown = `
+const testMD = `
++[test, note, tags]
 # Initial Test Note
 
 This is a test note. It contains all possible markdown syntax (no). It's just a test. :) Lorem ipsum dolor sit amet, 
@@ -80,7 +82,7 @@ consectetur adipiscing elit. Nullam euismod, nisi ut pretium varius, mauris nunc
 \`Inline Code\`
 \`\`\`js
 // JS
-function greet(name) {
+const greet = (name) => {
   return 'Hello, ' + name + '!';
 }
 \`\`\`
@@ -99,7 +101,7 @@ fn main() {
 }
 \`\`\`
 
-> I dont know how to style copy button in code blocks...
+> I don't know how to style copy button in code blocks...
 
 ^ this blockquote btw...
 
@@ -150,5 +152,3 @@ __Bold Text__
 
 Here's an inline HTML code: <span style="color: red;">Red Text</span>
 `;
-
-console.log(allPossibleMarkdown);
