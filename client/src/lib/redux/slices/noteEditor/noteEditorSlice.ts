@@ -37,15 +37,15 @@ const noteEditorSlice = createSlice({
       state.note = action.payload;
     },
     setNoteTitle(state, action: PayloadAction<string>) {
-      state.note.title = action.payload;
+      state.note!.title = action.payload;
       state.isEdited = true;
     },
     setNoteContent(state, action: PayloadAction<string | undefined>) {
       if (!action.payload) return;
 
-      state.note.content = action.payload;
+      state.note!.content = action.payload;
 
-      state.note.tags = getTags(action.payload, /\+\[.*?\]/g);
+      state.note!.tags = getTags(action.payload, /\+\[.*?\]/g);
 
       state.isEdited = true;
     },
